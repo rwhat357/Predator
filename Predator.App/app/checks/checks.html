@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <h1>Checks</h1>
+  <p> See the latest <b>check</b> transactions.</p>
+  
+</div>
+<table class="table table-striped table-condensed" width="647">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Routing #</th>
+			<th>Account #</th>
+			<th>Bounced</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- name, address, routing number and account number -->
+		<tr ng-repeat="check in vm.checks track by $index">
+			<td><span editable-text="check.name" e-name="name" e-form="rowform" e-required>{{ check.name || 'empty' }}</span></td>
+			<td><span editable-text="check.address" e-name="address" e-form="rowform" e-required>{{ check.address || 'empty' }}</span></td>
+			<td><span editable-text="check.routingNumber" e-name="routingNumber" e-form="rowform" e-required>{{ check.routingNumber || 'empty' }}</span></td>
+			<td><span editable-text="check.checkNumber" e-name="checkNumber" e-form="rowform" e-required>{{ check.checkNumber || 'empty' }}</span></td>
+			<td><span editable-text="check.bounced" e-name="bounced" e-form="rowform" e-required>{{ check.bounced || 'empty' }}</span></td>
+			<td style="white-space: nowrap">
+			    <form 	editable-form name="rowform" onbeforesave="vm.saveCheck($data, check.id)" ng-show="rowform.$visible" 
+			    		class="form-buttons form-inline" shown="vm.inserted == check">
+			        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+			            save
+			        </button>
+			        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+			            cancel
+			        </button>
+			    </form>
+			    <div class="buttons" ng-show="!rowform.$visible">
+			        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+			        <button class="btn btn-danger" ng-click="vm.removeCheck($index)">del</button>
+			    </div>
+			</td>
+		</tr> 
+	</tbody>
+</table>
+<button class="btn btn-default" ng-click="vm.addCheck()">Add row</button>
+</br>
+</br>
+

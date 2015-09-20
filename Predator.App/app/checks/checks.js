@@ -2,15 +2,20 @@
     'use strict';
 
     var app = angular.module('PredatorApp')
-        .controller('AccountsCtrl', AccountsCtrl);
+        .controller('ChecksCtrl', ChecksCtrl);
 
-    function AccountsCtrl() {
+    function ChecksCtrl($filter, $http) {
 
         var vm = this;
-        vm.name = 'Fredy';
-        vm.accounts = 
+        vm.inserted = {};
+
+        vm.saveCheck = saveCheck;
+        vm.removeCheck = removeCheck;
+        vm.addCheck = addCheck;
+        vm.checks = 
         [
 	        {
+	        	id: 0,
 	        	name: 'Fredy Whatley',
 	        	address: '445 Myrtle Avenue Laurel, MD 20707',
 	        	date: '01/03/2012',
@@ -23,6 +28,7 @@
 	        	bounced:true
 	        },
 	        {
+	        	id: 1,
 	        	name: 'Jon Doe',
 	        	address: '881 Adams Street Fuquay Varina, NC 27526',
 	        	date: '11/03/2014',
@@ -35,6 +41,7 @@
 	        	bounced:true
 	        },
 	        {
+	        	id: 2,
 	        	name: 'Bradley Nelson',
 	        	address: '390 Woodland Drive Grayslake, IL 60030',
 	        	date: '10/23/2015',
@@ -47,6 +54,7 @@
 	        	bounced:false
 	        },
 	        {
+	        	id: 3,
 	        	name: 'Joshua Wormley',
 	        	address: '385 2nd Avenue Navarre, FL 32566',
 	        	date: '12/14/2011',
@@ -64,6 +72,28 @@
 
         //////////////////
 
+        function saveCheck (data, id){
+	        //$scope.check not updated yet
+	        angular.extend(data, {
+	            id: id
+	        });
+	        return $http.post('/saveCheck', data);
+        }
+
+        function removeCheck (index){
+	        vm.checks.splice(index, 1);
+        }
+
+        function addCheck (){
+	        vm.inserted = {
+	            id: vm.checks.length + 1,
+	            name: '',
+	            address: '',
+	            routingNumber: '',
+	            accountNumber: ''
+	        };
+	        vm.checks.push(vm.inserted);
+        }
     }
 
 

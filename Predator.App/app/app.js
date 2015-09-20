@@ -6,9 +6,14 @@
             [
                 'ngResource',
                 'ngSanitize',
-                'ui.router'
+                'ui.router',
+                "xeditable", 
+                "ngMockE2E"
             ]);
 
+    app.run(function(editableOptions) {
+        editableOptions.theme = 'bs3';
+    });
 
     app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -21,11 +26,11 @@
           controller:'HomeCtrl as vm',
           title : 'Home',
         })
-        .state('accounts', {
-          url: '^/accounts',
-          templateUrl: 'app/accounts/accounts.html',
-          controller:'AccountsCtrl as vm',
-          title : 'Account',
+        .state('checks', {
+          url: '^/checks',
+          templateUrl: 'app/checks/checks.html',
+          controller:'ChecksCtrl as vm',
+          title : 'Checks',
         })
         .state('about', {
           url: '^/about',
@@ -41,6 +46,33 @@
         })
     
     });
+
+    app.run(['$httpBackend', function ($httpBackend) {
+
+      $httpBackend.whenGET('/groups').respond([{
+          id: 1,
+          text: 'user'
+      }, {
+          id: 2,
+          text: 'customer'
+      }, {
+          id: 3,
+          text: 'vip'
+      }, {
+          id: 4,
+          text: 'admin'
+      }]);
+
+      $httpBackend.whenPOST(/\/saveCheck/).respond(function(method, url, data) {
+          data = angular.fromJson(data);
+          return [200, {
+              status: 'ok'
+          }];
+      });
+
+      $httpBackend.whenGET(/\.html$/).passThrough();
+
+  }]);
     
 
 }());
