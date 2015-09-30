@@ -52,6 +52,10 @@ Setting Up the Solution Properties
 2. In the properties window on the left panel, go to **Common Properties > Startup Project**.
 3. On the right panel, choose "Single startup project" and select "Predator.Api" and click **OK** to close the window.
 
+Testing Predator.Api with Swagger
+
+Navigate to this address to open swagger to test the endpoints.
+http://localhost/Predator.Api/swagger
 
 ####How to Set Up IIS
 Setting Up Predator.Api
