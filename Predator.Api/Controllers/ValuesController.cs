@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Predator.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ValuesController : ApiController
     {
         // GET api/values

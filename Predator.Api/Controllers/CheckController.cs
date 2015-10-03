@@ -1,18 +1,23 @@
-﻿using System;
+﻿using Predator.Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Predator.Api.Providers;
 
 namespace Predator.Api.Controllers
 {
-    public class AccountsController : ApiController
+    public class CheckController : ApiController
     {
         // GET api/accounts
-        public IEnumerable<string> Get()
+        public IEnumerable<Check> Get()
         {
-            return new string[] { "value1", "value2" };
+            var checks = new CheckProvider();
+            var results = checks.Retrieve();
+
+            return results;
         }
 
         // GET api/accounts/5

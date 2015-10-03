@@ -75,3 +75,4 @@ Setting Up Predator.App
 * [IIS - this configuration section cannot be used at this path (configuration locking?)](http://stackoverflow.com/questions/9794985/iis-this-configuration-section-cannot-be-used-at-this-path-configuration-lock)
 * [How can I enable assembly binding logging](http://stackoverflow.com/questions/17681432/how-can-i-enable-assembly-binding-logging)
 * [In IIS, why doesn't Window Authentication show up as one of the options for my web application?](http://stackoverflow.com/questions/8067448/in-iis-why-doesnt-window-authentication-show-up-as-one-of-the-options-for-my-w)
+
