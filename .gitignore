@@ -178,18 +178,18 @@ node_modules/
 dist/
 
 # stylus generated css file
-/Freighter.App/Content/site.css
+/Predator.App/Content/site.css
 
 #don't ignore libraries
-!Freighter.Api/lib/**/*
+!Predator.Api/lib/**/*
 
 # SSH Keys location
-/Freighter.Api/App_Data/Temp/SSHKeys/**/*
+/Predator.Api/App_Data/Temp/SSHKeys/**/*
 
 # Kayak Upload location
-/Freighter.Api/App_Data/Tmp/FileUploads/**/*
-/Freighter.Api/App_Data/Tmp/MultipartData/**/*
+/Predator.Api/App_Data/Tmp/FileUploads/**/*
+/Predator.Api/App_Data/Tmp/MultipartData/**/*
 
 # Karma Coverage
-/Freighter.App/app/coverage
-/Freighter.App/coverage
+/Predator.App/app/coverage
+/Predator.App/coverage
