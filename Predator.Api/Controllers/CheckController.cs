@@ -21,9 +21,11 @@ namespace Predator.Api.Controllers
         }
 
         // GET api/accounts/5
-        public string Get(int id)
+        public Check Get(int id)
         {
-            return "value";
+            var check = new CheckProvider();
+            return check.GetCheck(id);
+           // return "value";
         }
 
         // POST api/accounts

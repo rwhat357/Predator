@@ -7,11 +7,15 @@ namespace Predator.Api.Models
 {
     public class Check
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string CheckNum { get; set; }
 
-        public string Address { get; set; }
-        public long RoutingNumber { get; set; }
-        public long AccountNumber { get; set; }
+        public string AccountNum { get; set; }
+        public string RoutingNum { get; set; }
+        public double Amount { get; set; }
+        public DateTime CheckDate { get; set; }
+        public int StoreId { get; set; }
+        public int CashierId { get; set; }
         public int OffenseLevel { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     	.module('common.services', ['ngResource'])
     	.constant('appSettings',
     		{
-    			serverPath: 'http://localhost:80'
+    			serverPath: 'http://localhost:80/Predator.Api'
     		});
 
 })();
