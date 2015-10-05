@@ -13,7 +13,8 @@ To get started, install all the required software first and then follow the inst
 ####Cloning the Predator Repository
 
 1. Open **Git Bash** or preferred git utility.
-2. Clone the Predator repo from GitHub in your local machine.
+2. Right-click your Desktop, and select Git Bash Here. This will open the Git command prompt from your Desktop's directory.
+3. Clone the Predator repo from GitHub in your local machine.
 	`git clone https://github.com/JSamp701/Predator-Check-Management-System.git`
 
 
