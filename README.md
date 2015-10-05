@@ -19,7 +19,7 @@ To get started, install all the required software first and then follow the inst
 4. Enter in your Git-hub use name and password.
 
 
-####How to Set Up Node.js
+####How to Set Up Node.js *****these instructions need to be checkededited
 
 1. Open **Node.js Command Prompt**.
 2. Navigate inside the **app** folder (i.e. `cd C:\Users\fwhatley\Desktop\Predator\Predator.App\app`)
