@@ -7,6 +7,7 @@
 			<th>Ammount</th>
 			<th>Date</th>
 			<th>Level</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,8 +30,8 @@
 			        </button>
 			    </form>
 			    <div class="buttons" ng-show="!rowform.$visible">
-			        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-			        <button class="btn btn-danger" ng-click="vm.removeCheck($index)">del</button>
+			        <button class="btn btn-xs btn-primary" ng-click="rowform.$show()"><i class="fa fa-list"></i></button>
+			        <button class="btn btn-xs btn-danger" ng-click="vm.removeCheck($index)"><i class="fa fa-trash-o"></i></button>
 			    </div>
 			</td>
 		</tr> 

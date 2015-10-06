@@ -15,7 +15,7 @@ namespace Predator.Api.Controllers
         public IEnumerable<Check> Get()
         {
             var checks = new CheckProvider();
-            var results = checks.Retrieve();
+            var results = checks.GetAll();
 
             return results;
         }

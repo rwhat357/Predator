@@ -12,7 +12,7 @@ namespace Predator.Api.Models
 
         public string AccountNum { get; set; }
         public string RoutingNum { get; set; }
-        public double Amount { get; set; }
+        public Decimal Amount { get; set; }
         public DateTime CheckDate { get; set; }
         public int StoreId { get; set; }
         public int CashierId { get; set; }
