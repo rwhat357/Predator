@@ -14,8 +14,8 @@ namespace Predator.Api.Controllers
         // GET api/accounts
         public IEnumerable<Check> Get()
         {
-            var checks = new CheckProvider();
-            var results = checks.GetAll();
+            var checkProvider = new CheckProvider();
+            var results = checkProvider.GetAll();
 
             return results;
         }
@@ -23,14 +23,15 @@ namespace Predator.Api.Controllers
         // GET api/accounts/5
         public Check Get(int id)
         {
-            var check = new CheckProvider();
-            return check.GetCheck(id);
-           // return "value";
+            var checkProvider = new CheckProvider();
+            return checkProvider.GetCheck(id);
         }
 
         // POST api/accounts
-        public void Post([FromBody]string value)
+        public Check Post([FromBody]Check check)
         {
+            var checkProvider = new CheckProvider();
+            return checkProvider.AddCheck(check);
         }
 
         // PUT api/accounts/5

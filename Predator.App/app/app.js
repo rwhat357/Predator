@@ -7,7 +7,9 @@
                 'common.services',
                 'ngSanitize',
                 'ui.router',
-                "xeditable", 
+                'xeditable',
+                'ui.bootstrap',
+                'ngAnimate' 
                 //"ngMockE2E"
             ]);
 

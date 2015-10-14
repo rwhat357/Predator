@@ -42,19 +42,26 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-
-            <a class="navbar-brand" ui-sref="home">Predator</a>
+            <a class="navbar-brand" ui-sref="checks">Predator</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              
-              <li><a ui-sref="home">Home</a></li>
-              <li><a ui-sref="checks">Checks</a></li>
-              <li><a ui-sref="about">About</a></li>
-              <li><a ui-sref="home">Contact</a></li>
-            </ul>
+              <ul class="nav navbar-nav">
+                <li><a ui-sref="checks">Home</a></li>
+                <li><a ui-sref="about">About</a></li>
+                <li><a ui-sref="contact">Contact</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ Add <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">+ Bad Check</a></li>
+                    <li><a href="#">+ Clerk</a></li>
+                    <li><a href="#">+ Clerk Manager</a></li>
+                    <li><a href="#">+ Store</a></li>
+                  </ul>
+                </li>
+              </ul>              
           </div>
         </div>
       </div>
@@ -87,6 +94,10 @@
     <script src="Scripts/jquery-2.1.3.js"></script>
     <script src="Scripts/bootstrap.js"></script>
     <script src="Scripts/underscore.js"></script>
+    <script src="Scripts/jsPDF/jspdf.min.js"></script>
+    <script src="Scripts/jsPDF/jspdf.plugin.from_html.js"></script>
+    <script src="Scripts/jsPDF/jspdf.plugin.split_text_to_size.js"></script>
+    <script src="Scripts/jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
 
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-ui-router.js"></script>
@@ -95,7 +106,7 @@
     <script src="Scripts/angular-sanitize.js"></script>
 
     <script src="Scripts/angular-loading-bar.js"></script>
-    <script src="Scripts/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls-0.14.0.js"></script>
     <script src="Scripts/angular-toastr.js"></script>
     <script src="Scripts/angular-toastr.tpls.js"></script>
     <script src="Scripts/angular-base64-upload.js"></script>

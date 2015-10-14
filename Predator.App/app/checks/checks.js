@@ -2,79 +2,167 @@
     'use strict';
 
     var app = angular.module('PredatorApp')
-        .controller('ChecksCtrl', ChecksCtrl);
+        .controller('ChecksCtrl', ChecksCtrl)
+        .controller('AddCheckCtrl', AddCheckCtrl);
 
-    function ChecksCtrl($filter, $http, checkResource) {
+    function ChecksCtrl($filter, $http, $uibModal, checkResource) {
 
         var vm = this;
         vm.inserted = {};
         vm.checks = [];
 
-        checkResource.query(function(data){
-        	vm.checks = data;
-        })
+        vm.openCheckDetailsModal = openCheckDetailsModal;
+        vm.addCheck = addCheck;
+        vm.printSelectedChecks = printSelectedChecks;
 
+        /////////////////////////////////
+
+        // checkResource.query(function(data){
+        // 	vm.checks = data;
+        // })
+
+        function openCheckDetailsModal(check){
+		    var modalInstance = $uibModal.open({
+				animation: true,
+				templateUrl: 'app/checks/checkDetailsModal.html',
+				controller: 'AddCheckCtrl as vm',
+				size: 'lg',
+				resolve: {
+					checks: function () {
+				 		return vm.checks;
+					},
+					check: function(){
+						return check;
+					}
+				}
+			})
+        }
+
+        function addCheck(){
+		    var modalInstance = $uibModal.open({
+				animation: true,
+				templateUrl: 'app/checks/checkDetailsModal.html',
+				controller: 'AddCheckCtrl as vm',
+				size: 'lg',
+				resolve: {
+					checks: function () {
+						return vm.checks;
+					},
+					check: function(){
+						var insertingCheck = {};
+						insertingCheck.id = vm.checks.length + 1;
+						vm.checks.push(insertingCheck);
+						return insertingCheck;
+					}
+		      	}
+		    });
+        }
+
+        function printSelectedChecks(){
+			var doc = new jsPDF();
+
+			var letter = 	
+"																									\n\
+Dear ___Joe__                                                                                       \n\
+\n\
+This is to inform you that your check dated __________, 20__, payable                               \n\
+\n\
+to________________, in the amount of $__________, has been returned to us due to                    \n\
+\n\
+insufficient funds.                                                                                 \n\
+\n\
+We realize that such mishaps do occur and therefore are bringing this matter to your                \n\
+\n\
+attention so that you will take the opportunity to correct this error and issue us a new            \n\
+\n\
+check.                                                                                              \n\
+\n\
+It is our policy to retain the old check until a new check is issued and cleared as we have         \n\
+\n\
+unfortunately realized that there are some people who do not honor their debts. If a new            \n\
+\n\
+check is not issued and the old check does not clear we will pursue legal action to the full        \n\
+\n\
+extend of the law.                                                                                  \n\
+\n\
+We are confident that you will resolve this matter and look forward to doing business               \n\
+\n\
+with you again in the future.                                                                       \n\
+\n\
+Our thanks for your attention to this matter.                                                       \n\
+\n\
+Very truly yours,                                                                                   \n\
+\n\
+__________Koopa Krew Inc________________";
+
+			doc.setFontSize(12);
+			doc.text(12, 10, letter);
+			doc.save('InvalidCheckLetter.pdf');
+        }
 
         // vm.saveCheck = saveCheck;
         // vm.removeCheck = removeCheck;
         // vm.addCheck = addCheck;
-        // vm.checks = 
-        // [
-	       //  {
-	       //  	id: 0,
-	       //  	name: 'Fredy Whatley',
-	       //  	address: '445 Myrtle Avenue Laurel, MD 20707',
-	       //  	date: '01/03/2012',
-	       //  	payToTheOrderOf: 'Bob Jones University',
-	       //  	amount:'$300.00',
-	       //  	bankName: 'PNC',
-	       //  	checkNumber:'34234545',
-	       //  	accountNumber:'12342',
-	       //  	routingNumber:'14234fff',
-	       //  	bounced:true
-	       //  },
-	       //  {
-	       //  	id: 1,
-	       //  	name: 'Jon Doe',
-	       //  	address: '881 Adams Street Fuquay Varina, NC 27526',
-	       //  	date: '11/03/2014',
-	       //  	payToTheOrderOf: 'Grocery Store',
-	       //  	amount:'$500.00',
-	       //  	bankName: 'TD',
-	       //  	checkNumber:'454353455345',
-	       //  	accountNumber:'1233',
-	       //  	routingNumber:'124f24fv',
-	       //  	bounced:true
-	       //  },
-	       //  {
-	       //  	id: 2,
-	       //  	name: 'Bradley Nelson',
-	       //  	address: '390 Woodland Drive Grayslake, IL 60030',
-	       //  	date: '10/23/2015',
-	       //  	payToTheOrderOf: 'Walmart',
-	       //  	amount:'$800.00',
-	       //  	bankName: 'Wells Fargo',
-	       //  	checkNumber:'34534534',
-	       //  	accountNumber:'1234234',
-	       //  	routingNumber:'1241234v',
-	       //  	bounced:false
-	       //  },
-	       //  {
-	       //  	id: 3,
-	       //  	name: 'Joshua Wormley',
-	       //  	address: '385 2nd Avenue Navarre, FL 32566',
-	       //  	date: '12/14/2011',
-	       //  	payToTheOrderOf: 'Gamingrap Inc.',
-	       //  	amount:'$3300.00',
-	       //  	bankName: 'PNC',
-	       //  	checkNumber:'34534534',
-	       //  	accountNumber:'3412',
-	       //  	routingNumber:'13v214',
-	       //  	bounced:false
-	       //  },
+        vm.checks = 
+        [
+	        {
+	        	id: 0,
+	        	checkNum: 3,
+	        	accountNum: 11103093,
+	        	routingNum: 441103093,
+	        	amount: 500.66,
+	        	checkDate:"2015-04-05T00:00:00",
+	        	storeId: 0,
+	        	cashierId:5,
+	        	offenseLevel:1
+	        },
+	        {
+	        	id: 1,
+	        	checkNum: 4,
+	        	accountNum:11103093,
+	        	routingNum: 411103093,
+	        	amount: 1000.343,
+	        	checkDate:"2015-04-05T00:00:00",
+	        	storeId: 2,
+	        	cashierId:4,
+	        	offenseLevel:2
+	        },
+	        {
+	        	id: 1,
+	        	checkNum: 4,
+	        	accountNum: 11103093,
+	        	routingNum: 411103093,
+	        	amount: 1000.343,
+	        	checkDate:"2015-04-05T00:00:00",
+	        	storeId: 2,
+	        	cashierId:4,
+	        	offenseLevel:2
+	        },
+	        {
+	        	id: 2,
+	        	checkNum: 5,
+	        	accountNum: 211274450,
+	        	routingNum: 34324,
+	        	amount: 200.0001,
+	        	checkDate:"2014-03-20T00:00:00",
+	        	storeId: 5,
+	        	cashierId:16,
+	        	offenseLevel:3
+	        },
+	        {
+	        	id: 3,
+	        	checkNum: 7,
+	        	accountNum: 26013673,
+	        	routingNum: 4323423,
+	        	amount: 7778,
+	        	checkDate:"2010-01-01T00:00:00",
+	        	storeId: 29,
+	        	cashierId:3,
+	        	offenseLevel:1
+	        },
 	        
 
-        // ]
+        ]
 
         // //////////////////
 
@@ -90,18 +178,23 @@
 	       //  vm.checks.splice(index, 1);
         // }
 
-        // function addCheck (){
-	       //  vm.inserted = {
-	       //      id: vm.checks.length + 1,
-	       //      name: '',
-	       //      address: '',
-	       //      routingNumber: '',
-	       //      accountNumber: ''
-	       //  };
-	       //  vm.checks.push(vm.inserted);
-        // }
+
+
+
     }
 
+
+    function AddCheckCtrl($modalInstance, checks, check){
+		var vm = this;
+		vm.checks = checks;
+		vm.check = check;
+		vm.close = close;
+
+
+		function close () {
+			$modalInstance.dismiss('close');
+		};
+    }
 
 
 })();

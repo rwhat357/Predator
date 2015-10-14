@@ -43,6 +43,7 @@ namespace Predator.Api.Providers
             return checks;
         }
         
+        // RETURNS: One check that matches the given <id>
         internal Check GetCheck(int id)
         {
             var check = new Check
@@ -87,6 +88,26 @@ namespace Predator.Api.Providers
             //}
 
             //return checks;
+        }
+
+        // FUNCTION: Adds a new check to the database
+        // RETURNS: Returns the check added to confirm that it was added
+        internal Check AddCheck(Check check)
+        {
+            check = new Check
+            {
+                Id = check.Id,
+                CheckNum = "3",
+                AccountNum = "6666666666666",
+                RoutingNum = "234324243",
+                Amount = new Decimal(445.00),
+                CheckDate = new DateTime(),
+                StoreId = 1,
+                CashierId = 40,
+                OffenseLevel = 1
+            };
+
+            return check;
         }
     }
 }
