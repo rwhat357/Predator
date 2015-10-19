@@ -2,7 +2,7 @@
 <html ng-app="PredatorApp">
 <head>
     <title>Home</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="SHORTCUT ICON" href="Content/images/favicon.ico">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:800,700,600,500,400,300' rel='stylesheet' type='text/css'>
@@ -42,12 +42,12 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="checks">Predator</a>
+            <a class="navbar-brand" ui-sref="home">Predator</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
               <ul class="nav navbar-nav">
-                <li><a ui-sref="checks">Home</a></li>
+                <li><a ui-sref="home">Home</a></li>
                 <li><a ui-sref="about">About</a></li>
                 <li><a ui-sref="contact">Contact</a></li>
               </ul>
@@ -127,13 +127,13 @@
     <script src="Scripts/angular-ui-utils-unique.js"></script>
     <script src="Scripts/smart-table.min.js"></script>
     <script src="Scripts/angular-hotkeys.js"></script>
+    <script src="Scripts/dirPagination.js"></script>
     <script src="scripts-for-testing/angular-mocks.js"></script>
     <!-- endbuild -->
 
     <!-- build:js app/app.min.js -->
     <script src="app/app.js"></script>
-    <script src="app/home/home.js"></script>
-    <script src="app/checks/checks.js"></script>
+    <script src="app/home/checks.js"></script>
     <script src="app/about/about.js"></script>
     <script src="app/contact/contact.js"></script>
     <script src="app/common/common.services.js"></script>

@@ -9,7 +9,9 @@
                 'ui.router',
                 'xeditable',
                 'ui.bootstrap',
-                'ngAnimate' 
+                'ngAnimate',
+                'toastr',
+                'angularUtils.directives.dirPagination'
                 //"ngMockE2E"
             ]);
 
@@ -17,22 +19,22 @@
         editableOptions.theme = 'bs3';
     });
 
+    app.config(function(toastrConfig) {
+        angular.extend(toastrConfig, {
+          positionClass: 'toast-bottom-right',
+        });
+    });
+
     app.config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/checks");
+        $urlRouterProvider.otherwise("/home");
         $stateProvider
 
         .state('home', {
           url: '^/home',
-          templateUrl: 'app/home/home.html',
-          controller:'HomeCtrl as vm',
-          title : 'Home',
-        })
-        .state('checks', {
-          url: '^/checks',
-          templateUrl: 'app/checks/checks.html',
+          templateUrl: 'app/home/checks.html',
           controller:'ChecksCtrl as vm',
-          title : 'Checks',
+          title : 'Home',
         })
         .state('about', {
           url: '^/about',
