@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Predator.Api.Models;
 using MySql.Data.MySqlClient;
+using Predator.Api.Utils;
 
 namespace Predator.Api.Providers
 {
@@ -19,131 +19,87 @@ namespace Predator.Api.Providers
         internal List<Check> GetAll()
         {
             var checks = new List<Check>();
-            MySqlConnection conn = new MySqlConnection(_connectionString);
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                if (MySqlConnectionManager.OpenConnection(conn))
+                {
+                    using (MySqlCommand command = new MySqlCommand("SELECT * FROM checkDB.`check`", conn))
+                    {
 
-            //using (var con = new SqlConnection(_connetionString))
-            //{
-            //    con.Open();
-
-            //    using (var command = new SqlCommand("SELECT * FROM Pr_Checks", con))
-            //    {
-            //        var reader = command.ExecuteReader();
-            //        while (reader.Read())
-            //        {
-            //            checks.Add(
-            //                new Check()
-            //              {
-            //                     Id = reader.GetInt32(0),
-            //                     CheckNum = reader.GetString(1),
-            //                     AccountNum = reader.GetString(2),
-            //                     RoutingNum = reader.GetString(3),
-            //                     Amount = reader.GetDecimal(4),
-            //                     CheckDate = reader.GetDateTime(5),
-            //                     StoreId = reader.GetInt32(6),
-            //                     CashierId = reader.GetInt32(7),
-            //                     OffenseLevel = reader.GetInt32(8)
-            //                });
-            //        }
-            //    }
-            //}
+                        MySqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            checks.Add(new Check()
+                            {
+                                IdCheck = reader.GetInt32("idCheck"),
+                                IdAccount = reader.GetInt32("idAccount"),
+                                IdStore = reader.GetInt32("idStore"),
+                                CheckNum = reader.GetInt32("checkNum"),
+                                Amount = reader.GetFloat("amount"),
+                                DateWritten = reader.GetDateTime("dateWritten"),
+                                AmountPaid = (!reader.IsDBNull(reader.GetOrdinal("amountPaid"))) ? reader.GetFloat("amountPaid") : -1,
+                                PaidDate = (!reader.IsDBNull(reader.GetOrdinal("paidDate"))) ? reader.GetDateTime("paidDate") : new DateTime(0)
+                            });
+                        }
+                    }
+                    MySqlConnectionManager.CloseConnection(conn);
+                }
+            }
 
             return checks;
         }
-        
+
         // RETURNS: One check that matches the given <id>
         internal Check GetCheck(int id)
         {
-            var check = new Check
+            var check = new Check();
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
-                Id = id,
-                CheckNum = "3",
-                AccountNum = "6666666666666",
-                RoutingNum = "234324243",
-                Amount = new Decimal(445.00),
-                CheckDate = new DateTime(),
-                StoreId = 1,
-                CashierId = 40,
-                OffenseLevel = 1
-            };
+                if (MySqlConnectionManager.OpenConnection(conn))
+                {
+                    using (MySqlCommand command = new MySqlCommand("SELECT * FROM checkDB.`check` AS checks WHERE checks.idCheck = " + Convert.ToString(id), conn))
+                    {
 
+                        MySqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            check = new Check()
+                            {
+                                IdCheck = reader.GetInt32("idCheck"),
+                                IdAccount = reader.GetInt32("idAccount"),
+                                IdStore = reader.GetInt32("idStore"),
+                                CheckNum = reader.GetInt32("checkNum"),
+                                Amount = reader.GetFloat("amount"),
+                                DateWritten = reader.GetDateTime("dateWritten"),
+                                AmountPaid = (!reader.IsDBNull(reader.GetOrdinal("amountPaid"))) ? reader.GetFloat("amountPaid") : -1,
+                                PaidDate = (!reader.IsDBNull(reader.GetOrdinal("paidDate"))) ? reader.GetDateTime("paidDate") : new DateTime(0)
+                            };
+                        }
+                    }
+                    MySqlConnectionManager.CloseConnection(conn);
+                }
+            }
             return check;
-            //var check = new Check();
-            //using (var con = new SqlConnection(_connetionString))
-            //{
-            //    con.Open();
-
-            //    using (var command = new SqlCommand("SELECT * FROM Pr_Checks ", con))
-            //    {
-            //        var reader = command.ExecuteReader();
-            //        while (reader.Read())
-            //        {
-            //            checks.Add(
-            //                new Check()
-            //                {
-            //                    Id = reader.GetInt32(0),
-            //                    CheckNum = reader.GetString(1),
-            //                    AccountNum = reader.GetString(2),
-            //                    RoutingNum = reader.GetString(3),
-            //                    Amount = reader.GetDecimal(4),
-            //                    CheckDate = reader.GetDateTime(5),
-            //                    StoreId = reader.GetInt32(6),
-            //                    CashierId = reader.GetInt32(7),
-            //                    OffenseLevel = reader.GetInt32(8)
-            //                });
-            //        }
-            //    }
-            //}
-
-            //return checks;
         }
 
         // FUNCTION: Adds a new check to the database
         // RETURNS: Returns the check added to confirm that it was added
         internal Check AddCheck(Check check)
         {
-            check = new Check
-            {
-                Id = check.Id,
-                CheckNum = "3",
-                AccountNum = "6666666666666",
-                RoutingNum = "234324243",
-                Amount = new Decimal(445.00),
-                CheckDate = new DateTime(),
-                StoreId = 1,
-                CashierId = 40,
-                OffenseLevel = 1
-            };
+            check = new Check();
+            //{
+            //    Id = check.Id,
+            //    CheckNum = "3",
+            //    AccountNum = "6666666666666",
+            //    RoutingNum = "234324243",
+            //    Amount = new Decimal(445.00),
+            //    CheckDate = new DateTime(),
+            //    StoreId = 1,
+            //    CashierId = 40,
+            //    OffenseLevel = 1
+            //};
 
             return check;
-        }
-
-        private static bool OpenConnection(MySqlConnection conn)
-        {
-            try
-            {
-                conn.Open();
-                return true;
-            }
-            catch (MySqlException ex)
-            {
-                //When handling errors, you can your application's response based 
-                //on the error number.
-                //The two most common error numbers when connecting are as follows:
-                //0: Cannot connect to server.
-                //1045: Invalid user name and/or password.
-                switch (ex.Number)
-                {
-                    case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
-                        
-                        break;
-
-                    case 1045:
-                        MessageBox.Show("Invalid username/password, please try again");
-                        break;
-                }
-                return false;
-            }
         }
     }
 }

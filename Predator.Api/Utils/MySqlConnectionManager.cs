@@ -10,7 +10,7 @@ namespace Predator.Api.Utils
 {
     class MySqlConnectionManager
     {
-        private static bool OpenConnection(MySqlConnection connection)
+        public static bool OpenConnection(MySqlConnection connection)
         {
             try
             {
@@ -34,6 +34,21 @@ namespace Predator.Api.Utils
                         Logger.Instance.WriteToLog("Invalid username/password, please try again");
                         break;
                 }
+                return false;
+            }
+        }
+
+        //Close connection
+        public static bool CloseConnection(MySqlConnection connection)
+        {
+            try
+            {
+                connection.Close();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                Logger.Instance.WriteToLog(ex.Message);
                 return false;
             }
         }
