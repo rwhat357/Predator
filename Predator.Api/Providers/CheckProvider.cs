@@ -5,40 +5,47 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Predator.Api.Models;
+using MySql.Data.MySqlClient;
 
 namespace Predator.Api.Providers
 {
     public class CheckProvider
     {
-        readonly string _connetionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+        //readonly string _connetionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+
+        //hardcoded connection string for the moment, used for connecting to the mysql server located at localhost, with the creds supplied in the server info doc
+        readonly string _connectionString = "SERVER=localhost;DATABASE=checkDB;UID=koopa;PASSWORD=koopa1234;";
+
         internal List<Check> GetAll()
         {
             var checks = new List<Check>();
-            using (var con = new SqlConnection(_connetionString))
-            {
-                con.Open();
+            MySqlConnection conn = new MySqlConnection(_connectionString);
 
-                using (var command = new SqlCommand("SELECT * FROM Pr_Checks", con))
-                {
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        checks.Add(
-                            new Check()
-                          {
-                                 Id = reader.GetInt32(0),
-                                 CheckNum = reader.GetString(1),
-                                 AccountNum = reader.GetString(2),
-                                 RoutingNum = reader.GetString(3),
-                                 Amount = reader.GetDecimal(4),
-                                 CheckDate = reader.GetDateTime(5),
-                                 StoreId = reader.GetInt32(6),
-                                 CashierId = reader.GetInt32(7),
-                                 OffenseLevel = reader.GetInt32(8)
-                            });
-                    }
-                }
-            }
+            //using (var con = new SqlConnection(_connetionString))
+            //{
+            //    con.Open();
+
+            //    using (var command = new SqlCommand("SELECT * FROM Pr_Checks", con))
+            //    {
+            //        var reader = command.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            checks.Add(
+            //                new Check()
+            //              {
+            //                     Id = reader.GetInt32(0),
+            //                     CheckNum = reader.GetString(1),
+            //                     AccountNum = reader.GetString(2),
+            //                     RoutingNum = reader.GetString(3),
+            //                     Amount = reader.GetDecimal(4),
+            //                     CheckDate = reader.GetDateTime(5),
+            //                     StoreId = reader.GetInt32(6),
+            //                     CashierId = reader.GetInt32(7),
+            //                     OffenseLevel = reader.GetInt32(8)
+            //                });
+            //        }
+            //    }
+            //}
 
             return checks;
         }
@@ -108,6 +115,35 @@ namespace Predator.Api.Providers
             };
 
             return check;
+        }
+
+        private static bool OpenConnection(MySqlConnection conn)
+        {
+            try
+            {
+                conn.Open();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        
+                        break;
+
+                    case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+                return false;
+            }
         }
     }
 }
