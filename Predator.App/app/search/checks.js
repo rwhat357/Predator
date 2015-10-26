@@ -3,7 +3,7 @@
 
     var app = angular.module('PredatorApp')
         .controller('ChecksCtrl', ChecksCtrl)
-        .controller('AddCheckCtrl', AddCheckCtrl);
+        .controller('CheckDetailsCtrl', CheckDetailsCtrl);
 
     function ChecksCtrl($filter, $http, $uibModal, checkResource, toastr) {
 
@@ -16,7 +16,6 @@
 		vm.searchText   = '';     // set the default search/filter term
 
         vm.openCheckDetailsModal = openCheckDetailsModal;
-        vm.addCheck = addCheck;
         vm.printSelectedChecks = printSelectedChecks;
         vm.selectCheck = selectCheck;
 
@@ -36,8 +35,8 @@
         function openCheckDetailsModal(check){
 		    var modalInstance = $uibModal.open({
 				animation: true,
-				templateUrl: 'app/home/checkDetailsModal.html',
-				controller: 'AddCheckCtrl as vm',
+				templateUrl: 'app/search/checkDetailsModal.html',
+				controller: 'CheckDetailsCtrl as vm',
 				size: 'lg',
 				resolve: {
 					checks: function () {
@@ -50,25 +49,6 @@
 			})
         }
 
-        function addCheck(){
-		    var modalInstance = $uibModal.open({
-				animation: true,
-				templateUrl: 'app/home/checkDetailsModal.html',
-				controller: 'AddCheckCtrl as vm',
-				size: 'lg',
-				resolve: {
-					checks: function () {
-						return vm.checks;
-					},
-					check: function(){
-						var insertingCheck = {};
-						insertingCheck.id = vm.checks.length + 1;
-						vm.checks.push(insertingCheck);
-						return insertingCheck;
-					}
-		      	}
-		    });
-        }
 
         function printSelectedChecks(){
 
@@ -477,7 +457,7 @@ __________Koopa Krew Inc________________";
     }
 
 
-    function AddCheckCtrl($modalInstance, checks, check){
+    function CheckDetailsCtrl($modalInstance, checks, check){
 		var vm = this;
 		vm.checks = checks;
 		vm.check = check;

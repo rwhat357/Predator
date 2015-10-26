@@ -1,0 +1,52 @@
+
+<h3>Check Details</h3>
+<form class="" editable-form name="editableForm">
+    <div>
+        <span class="col-xs-3 text-right title">Check number: </span>
+        <span editable-text="vm.check.checkNum" e-required>{{ vm.check.checkNum || 'empty' }}</span>
+    </div>
+    </br>
+    <div>
+        <span class="col-xs-3 text-right title">Account number: </span>
+        <span editable-text="vm.check.accountNum" e-required>{{ vm.check.accountNum || 'empty' }}</span>
+    </div>
+    </br>
+    <div>
+        <span class="col-xs-3 text-right title">Routing number: </span>
+        <span editable-text="vm.check.routingNum" e-required>{{ vm.check.routingNum || 'empty' }}</span>
+    </div>
+    </br>
+    <div>
+        <span class="col-xs-3 text-right title">Amount: </span>
+        <span editable-text="vm.check.amount" e-required>{{ vm.check.amount || 'empty' }}</span>
+    </div>
+    </br>
+    <div>
+        <span class="col-xs-3 text-right title">Date: </span>
+        <span editable-text="vm.check.checkDate" e-required>{{ vm.check.checkDate || 'empty' }}</span>
+    </div>
+    </br>              
+    <div>
+        <span class="col-xs-3 text-right title">Offense level: </span>
+        <span editable-text="vm.check.offenseLevel" e-required>{{ vm.check.offenseLevel || 'empty' }}</span>
+    </div>
+    </br>
+    <div>
+      <!-- button to show form -->
+      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+</form>  
+<!-- {{ vm.checks | json}} -->
+
+

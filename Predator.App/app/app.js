@@ -27,14 +27,32 @@
 
     app.config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/home");
+        $urlRouterProvider.otherwise("/login");
         $stateProvider
 
-        .state('home', {
-          url: '^/home',
-          templateUrl: 'app/home/checks.html',
+        .state('login', {
+          url: '^/login',
+          templateUrl: 'app/login/login.html',
+          controller:'LoginCtrl as vm',
+          title : 'login',
+        })
+        .state('addCheck', {
+          url: '^/addCheck',
+          templateUrl: 'app/addCheck/addCheck.html',
+          controller:'AddCheckCtrl as vm',
+          title : 'addCheck',
+        })
+        .state('search', {
+          url: '^/search',
+          templateUrl: 'app/search/checks.html',
           controller:'ChecksCtrl as vm',
-          title : 'Home',
+          title : 'search',
+        })
+        .state('deleteCheck', {
+          url: '^/search',
+          templateUrl: 'app/deleteCheck/deleteCheck.html',
+          controller:'DeleteCheckCtrl as vm',
+          title : 'deleteCheck',
         })
         .state('about', {
           url: '^/about',
