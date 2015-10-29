@@ -92,3 +92,10 @@ Setting Up Predator.App
 ### Deploy the back-end
 1. Navigate to **Predator.Api** folder.
 1. Open and FTP or SSH client and upload the contents **Predator.Api** to the server.
+
+## How to Tag a Build
+
+1. Merge all branches to `master`.
+3. After the merge is complete, tag and push `master`.
+	* `git tag PD4` *(change **PD4** to your release version)*
+	* `git push origin master --tag`
