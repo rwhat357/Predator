@@ -59,6 +59,19 @@ Testing Predator.Api with Swagger
 Navigate to this address to open swagger to test the endpoints.
 http://localhost/Predator.Api/swagger
 
+## How to Deploy the App
+
+### Requirements
+* IIS Server
+* Microsoft .NET 4.5 Framework
+### Deploy the front-end
+1. Open a terminal and navigate to **Predator.App** folder. 
+2. Run `grunt prod` which will run tasks to optimize and minify the front-end. The server ready files will be placed under the folder **dist**.
+3. Use an FTP or SSH client to upload the contents of **dist** to the server.
+### Deploy the back-end
+1. Navigate to **Predator.Api** folder.
+1. Open and FTP or SSH client and upload the contents **Predator.Api** to the server.
+
 ####How to Set Up IIS
 Setting Up Predator.Api
 
@@ -78,15 +91,4 @@ Setting Up Predator.App
 * [How can I enable assembly binding logging](http://stackoverflow.com/questions/17681432/how-can-i-enable-assembly-binding-logging)
 * [In IIS, why doesn't Window Authentication show up as one of the options for my web application?](http://stackoverflow.com/questions/8067448/in-iis-why-doesnt-window-authentication-show-up-as-one-of-the-options-for-my-w)
 
-## How to Deploy the App
 
-### Requirements
-* IIS Server
-* Microsoft .NET 4.5 Framework
-### Deploy the front-end
-1. Open a terminal and navigate to **Predator.App** folder. 
-2. Run `grunt prod` which will run tasks to optimize and minify the front-end. The server ready files will be placed under the folder **dist**.
-3. Use an FTP or SSH client to upload the contents of **dist** to the server.
-### Deploy the back-end
-1. Navigate to **Predator.Api** folder.
-1. Open and FTP or SSH client and upload the contents **Predator.Api** to the server.
