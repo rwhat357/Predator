@@ -79,6 +79,7 @@ Setting Up Predator.App
 * [In IIS, why doesn't Window Authentication show up as one of the options for my web application?](http://stackoverflow.com/questions/8067448/in-iis-why-doesnt-window-authentication-show-up-as-one-of-the-options-for-my-w)
 
 ## How to Deploy the App
+
 ### Requirements
 * IIS Server
 * Microsoft .NET 4.5 Framework
