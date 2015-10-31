@@ -1,0 +1,21 @@
+<div class="container login">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1>Login to Predator</h1>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="vm.user.username"  placeholder="Username or Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" ng-model="vm.user.password" placeholder="Password">
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary" ng-click="vm.login()">Login</button>
+                    <button type="submit" class="btn btn-default" ng-click="vm.register()">Register</button>
+                    <br>
+                    <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

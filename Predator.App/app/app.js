@@ -9,7 +9,9 @@
                 'ui.router',
                 'xeditable',
                 'ui.bootstrap',
-                'ngAnimate' 
+                'ngAnimate',
+                'toastr',
+                'angularUtils.directives.dirPagination'
                 //"ngMockE2E"
             ]);
 
@@ -17,22 +19,40 @@
         editableOptions.theme = 'bs3';
     });
 
+    app.config(function(toastrConfig) {
+        angular.extend(toastrConfig, {
+          positionClass: 'toast-bottom-right',
+        });
+    });
+
     app.config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/checks");
+        $urlRouterProvider.otherwise("/login");
         $stateProvider
 
-        .state('home', {
-          url: '^/home',
-          templateUrl: 'app/home/home.html',
-          controller:'HomeCtrl as vm',
-          title : 'Home',
+        .state('login', {
+          url: '^/login',
+          templateUrl: 'app/login/login.html',
+          controller:'LoginCtrl as vm',
+          title : 'login',
         })
-        .state('checks', {
-          url: '^/checks',
-          templateUrl: 'app/checks/checks.html',
+        .state('addCheck', {
+          url: '^/addCheck',
+          templateUrl: 'app/addCheck/addCheck.html',
+          controller:'AddCheckCtrl as vm',
+          title : 'addCheck',
+        })
+        .state('search', {
+          url: '^/search',
+          templateUrl: 'app/search/checks.html',
           controller:'ChecksCtrl as vm',
-          title : 'Checks',
+          title : 'search',
+        })
+        .state('deleteCheck', {
+          url: '^/search',
+          templateUrl: 'app/deleteCheck/deleteCheck.html',
+          controller:'DeleteCheckCtrl as vm',
+          title : 'deleteCheck',
         })
         .state('about', {
           url: '^/about',
