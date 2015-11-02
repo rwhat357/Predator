@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Predator.Api", "Predator.Api\Predator.Api.csproj", "{65B4D93B-2F87-4132-B38E-C1F732354A0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pretador.Api.Tests", "Pretador.Api.Tests\Pretador.Api.Tests.csproj", "{A3A2DE3F-72A0-429F-9385-20FE20437464}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{65B4D93B-2F87-4132-B38E-C1F732354A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B4D93B-2F87-4132-B38E-C1F732354A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B4D93B-2F87-4132-B38E-C1F732354A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A2DE3F-72A0-429F-9385-20FE20437464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A2DE3F-72A0-429F-9385-20FE20437464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A2DE3F-72A0-429F-9385-20FE20437464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A2DE3F-72A0-429F-9385-20FE20437464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
