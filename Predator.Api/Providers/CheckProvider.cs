@@ -23,7 +23,7 @@ namespace Predator.Api.Providers
             {
                 if (MySqlConnectionManager.OpenConnection(conn))
                 {
-                    using (MySqlCommand command = new MySqlCommand("SELECT * FROM checkDB.`check`", conn))
+                    using (MySqlCommand command = new MySqlCommand("SELECT * FROM checkDB.`chekue`", conn))
                     {
 
                         MySqlDataReader reader = command.ExecuteReader();
@@ -57,7 +57,7 @@ namespace Predator.Api.Providers
             {
                 if (MySqlConnectionManager.OpenConnection(conn))
                 {
-                    using (MySqlCommand command = new MySqlCommand("SELECT * FROM checkDB.`check` AS checks WHERE checks.idCheck = " + Convert.ToString(id), conn))
+                    using (MySqlCommand command = new MySqlCommand("SELECT * FROM checkDB.`chekue` AS checks WHERE checks.idCheck = " + Convert.ToString(id), conn))
                     {
 
                         MySqlDataReader reader = command.ExecuteReader();
@@ -86,20 +86,26 @@ namespace Predator.Api.Providers
         // RETURNS: Returns the check added to confirm that it was added
         internal Check AddCheck(Check check)
         {
-            check = new Check();
-            //{
-            //    Id = check.Id,
-            //    CheckNum = "3",
-            //    AccountNum = "6666666666666",
-            //    RoutingNum = "234324243",
-            //    Amount = new Decimal(445.00),
-            //    CheckDate = new DateTime(),
-            //    StoreId = 1,
-            //    CashierId = 40,
-            //    OffenseLevel = 1
-            //};
-
+            string commandstring = "INSERT INTO checkDB.`chekue` AS checks (idCheck, idAccount, idStore, checkNum, amount, dateWritten) VALUES ({VALUESTRING})";
+            string valuestring = "" + check.IdCheck + "," + check.IdAccount + "," + check.IdStore + "," + check.CheckNum + "," + check.Amount + "," + check.DateWritten.ToString("yyyy-MM-dd");
+            commandstring = commandstring.Replace("{VALUESTRING}", valuestring);
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                if (MySqlConnectionManager.OpenConnection(conn))
+                {
+                    using (MySqlCommand command = new MySqlCommand(commandstring, conn))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    MySqlConnectionManager.CloseConnection(conn);
+                }
+            }
             return check;
+        }
+
+        internal void DeleteCheck(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
