@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Predator.Api.Models
 {
-    class CheckDisplayRow
+    public class CheckDisplayRow
     {
         public int idCheck { get; set; }
         public int idAccount { get; set; }

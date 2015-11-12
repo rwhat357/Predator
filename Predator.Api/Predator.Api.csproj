@@ -231,6 +231,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\MySqlConnectionManager.cs" />
+    <Compile Include="Utils\PredatorConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
