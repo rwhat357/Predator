@@ -11,7 +11,8 @@
                 'ui.bootstrap',
                 'ngAnimate',
                 'toastr',
-                'angularUtils.directives.dirPagination'
+                'angularUtils.directives.dirPagination',
+                'ngCookies'
                 //"ngMockE2E"
             ]);
 
@@ -49,7 +50,7 @@
           title : 'search',
         })
         .state('deleteCheck', {
-          url: '^/search',
+          url: '^/removeChecks',
           templateUrl: 'app/deleteCheck/deleteCheck.html',
           controller:'DeleteCheckCtrl as vm',
           title : 'deleteCheck',
@@ -65,6 +66,12 @@
           templateUrl: 'app/contact/contact.html',
           controller:'ContactCtrl as vm',
           title : 'Contact',
+        })        
+        .state('addClerkManager', {
+          url: '^/addClerkManager',
+          templateUrl: 'app/addClerkManager/addClerkManager.html',
+          controller:'AddClerkManagerCtrl as vm',
+          title : 'Add Clerk Manager',
         })
     
     });

@@ -4,7 +4,7 @@
     var app = angular.module('PredatorApp')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl(toastr, $state, LoginSvc) {
+    function LoginCtrl(toastr, $state, LoginSvc, $cookies) {
 
         var vm = this;
         vm.name = 'Fredy LoginCtrl';
@@ -20,14 +20,20 @@
         /////////////////////
 
         function login(){
-        	toastr.success('Successfully logged in!');
-        	LoginSvc.authenticate(vm.user);
-        	$state.go('search');
+            LoginSvc.authenticate(vm.user);
+
+            if (LoginSvc.getIsAuthenticated()){
+                $state.go('search');
+                toastr.success('Successfully logged in!');
+            } else {
+                toastr.error('Username or password was incorrect!');
+                $state.go('login');
+            }
+            
         }
 
-
         function register(){
-        	toastr.success('Successfully registered!');
+        	toastr.error('Feature not implemented yet!');
         }
 
 

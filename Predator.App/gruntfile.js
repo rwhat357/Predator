@@ -173,7 +173,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('dev',[
 		'stylus',
 		'connect',
-		'karma:dev:start',
+		//'karma:dev:start', // not using this for Predator App
 		'watch'
 	]);
 

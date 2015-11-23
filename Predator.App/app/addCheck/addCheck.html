@@ -1,52 +1,113 @@
 
-<h3>Add a Bad Check</h3>
-<form class="" editable-form name="editableForm">
-    <div>
-        <span class="col-xs-3 text-right title">Check number: </span>
-        <span editable-text="vm.check.checkNum" e-required>{{ vm.check.checkNum || 'empty' }}</span>
-    </div>
-    </br>
-    <div>
-        <span class="col-xs-3 text-right title">Account number: </span>
-        <span editable-text="vm.check.accountNum" e-required>{{ vm.check.accountNum || 'empty' }}</span>
-    </div>
-    </br>
-    <div>
-        <span class="col-xs-3 text-right title">Routing number: </span>
-        <span editable-text="vm.check.routingNum" e-required>{{ vm.check.routingNum || 'empty' }}</span>
-    </div>
-    </br>
-    <div>
-        <span class="col-xs-3 text-right title">Amount: </span>
-        <span editable-text="vm.check.amount" e-required>{{ vm.check.amount || 'empty' }}</span>
-    </div>
-    </br>
-    <div>
-        <span class="col-xs-3 text-right title">Date: </span>
-        <span editable-text="vm.check.checkDate" e-required>{{ vm.check.checkDate || 'empty' }}</span>
-    </div>
-    </br>              
-    <div>
-        <span class="col-xs-3 text-right title">Offense level: </span>
-        <span editable-text="vm.check.offenseLevel" e-required>{{ vm.check.offenseLevel || 'empty' }}</span>
-    </div>
-    </br>
-    <div>
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-        Edit
-      </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="editableForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-          Save
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-          Cancel
-        </button>
-      </span>
-    </div>
-</form>  
-<!-- {{ vm.checks | json}} -->
+<legend>Add a New Bad Check</legend>
+<p>All fields marked with (*) are required.</p>
+<form class="form-horizontal" name="checkForm"
+      novalidate>
+    <fieldset>
+        <div class="form-group"
+             ng-class="{'has-error':checkForm.inputCheckNum.$invalid &&
+                                    checkForm.inputCheckNum.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputCheckNum">Check Number *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputCheckNum"
+                       name="inputCheckNum"
+                       type="text"
+                       placeholder="eg. 1211434"
+                       ng-model="vm.check.checkNum"
+                       required/>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error':checkForm.inputAccountNum.$invalid &&
+                                    checkForm.inputAccountNum.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputAccountNum">Account Number *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputAccountNum"
+                       name="inputAccountNum"
+                       type="text"
+                       placeholder="eg. 342"
+                       ng-model="vm.check.account.accountNum"
+                       required/>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error':checkForm.inputRoutingNum.$invalid &&
+                                    checkForm.inputRoutingNum.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputRoutingNum">Routing Number *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputRoutingNum"
+                       name="inputRoutingNum"
+                       type="text"
+                       placeholder="eg. 33442"
+                       ng-model="vm.check.account.routingNum"
+                       required/>
+            </div>
+        </div>        
+        <div class="form-group"
+             ng-class="{'has-error':checkForm.inputAmount.$invalid &&
+                                    checkForm.inputAmount.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputAmount"> Amount *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputAmount"
+                       name="inputAmount"
+                       type="text"
+                       placeholder="eg. 500.00"
+                       ng-model="vm.check.amount"
+                       required/>
+            </div>
+        </div>          
+        <div class="form-group"
+             ng-class="{'has-error':checkForm.inpuOffenseLevel.$invalid &&
+                                    checkForm.inpuOffenseLevel.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inpuOffenseLevel"> Offense Level</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inpuOffenseLevel"
+                       name="inpuOffenseLevel"
+                       type="text"
+                       ng-model="vm.check.offenseLevel"
+                       required/>
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                    <span>
+                        <button class="btn btn-primary"
+                                style="width:80px;margin-right:10px"
+                                ng-click="vm.addCheck(checkForm.$valid)"
+                                ng-disabled="checkForm.$invalid">
+                            Save
+                        </button>
+                    </span>
+                    <span>
+                        <button class="btn btn-default"
+                                style="width:70px"
+                                ng-click="vm.clearAllFields()">
+                            Clear
+                        </button>
+                    </span>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+{{ vm.check | json}}
+<br>
+{{ vm.checks | json}}
+
 
 

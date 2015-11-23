@@ -18,6 +18,7 @@
         vm.openCheckDetailsModal = openCheckDetailsModal;
         vm.printSelectedChecks = printSelectedChecks;
         vm.selectCheck = selectCheck;
+        vm.removeCheck = removeCheck;
 
         /////////////////////////////////
 
@@ -447,9 +448,13 @@ __________Koopa Krew Inc________________";
 	       //  return $http.post('/saveCheck', data);
         // }
 
-        // function removeCheck (index){
-	       //  vm.checks.splice(index, 1);
-        // }
+        function removeCheck (index){
+        	_.each(vm.checks, function(check, i){
+        		if ( index === check.id){
+	         		vm.checks.splice(i, 1);
+        		}
+        	});
+        }
 
 
 

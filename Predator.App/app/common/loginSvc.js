@@ -5,7 +5,7 @@
     	.module('PredatorApp')
     	.factory('LoginSvc',  LoginSvc);
 
-    function LoginSvc(){
+    function LoginSvc($cookieStore, $state){
     	
     	var userInfo = {
     		username: '',
@@ -37,7 +37,10 @@
         	}
 
         	if (user.username == 'admin' && user.password == 'admin'){
-        		isAuthenticated = true;
+
+                // Put cookie
+                $cookieStore.put('predator_username', user.username);
+                $cookieStore.put('predator_password', user.password);
         	}
 
         }
@@ -47,7 +50,17 @@
         }
 
         function getIsAuthenticated(){
-        	return isAuthenticated;
+
+            // Get cookie
+            var PredatorLoginCookie = $cookieStore.get('predator_username');
+
+            if ( PredatorLoginCookie === 'admin' ) {
+                //$state.go('search');
+                return true;
+            } 
+
+            //$state.go('login');
+            return false;
         }
 
 

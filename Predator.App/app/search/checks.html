@@ -10,6 +10,7 @@
             <a class="btn btn-default" ui-sref="addCheck">+ Add Check</a>
 	        <a target="_self" href="example.com/uploads/asd4a4d5a.pdf" download="foo.pdf"></a>
 	        <button class="btn btn-default" ng-click="vm.printSelectedChecks()"><i class="fa fa-print"></i> Print Check(s) <span class="badge">{{vm.printQueue.length}}</span></button>
+            <button class="btn btn-default" ng-click="vm.removeChecks()"><i class="fa fa-trash-o"></i> Remove Check(s) <span class="badge">{{vm.printQueue.length}}</span></button>
 	    </div>
 	</div>
 
@@ -72,7 +73,10 @@
             <td><span ng-model="check.amount">{{ check.amount || 'empty' }}</span></td>
             <td><span ng-model="check.checkDate">{{ check.checkDate | date:'MM/dd/yyyy @ h:mma' || 'empty' }}</span></td>
             <td><span ng-model="check.offenseLevel">{{ check.offenseLevel || 'empty' }}</span></td>
-            <td><button class="btn btn-xs btn-primary" ng-click="vm.openCheckDetailsModal(check)">Details</button></td>
+            <td>
+                <button class="btn btn-xs btn-primary" ng-click="vm.openCheckDetailsModal(check)">Details</button>
+                <button class="btn btn-xs btn-danger"ng-click="vm.removeCheck(check.id)">Remove</button>
+            </td>
         </tr>
     </tbody>
 </table>
