@@ -9,7 +9,7 @@ namespace Predator.Api.Providers
 {
     class TestCheckDisplayRowProvider
     {
-        internal void CreateCheckDisplayRow(string rowstring)
+        internal void CreateCheckDisplayRow(CheckDisplayRow row)
         {
 
         }
@@ -21,14 +21,14 @@ namespace Predator.Api.Providers
             return row;
         }
 
-        internal CheckDisplayRow[] RetrieveAllCheckDisplayRows()
+        internal IEnumerable<CheckDisplayRow> RetrieveAllCheckDisplayRows()
         {
             CheckDisplayRow[] rows = null;
 
             return rows;
         }
 
-        internal void UpdateCheckDisplayRow(int id, string valueString)
+        internal void UpdateCheckDisplayRow(int id, CheckDisplayRow row)
         {
 
         }

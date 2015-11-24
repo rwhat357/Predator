@@ -24,13 +24,13 @@ namespace Predator.Api.Controllers
         }
 
         // POST: api/CheckDisplayRow
-        public void Post([FromBody]string value)
+        public void Post([FromBody]CheckDisplayRow value)
         {
             CheckDisplayRowService.CreateCheckDisplayRow(value);
         }
 
         // PUT: api/CheckDisplayRow/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]CheckDisplayRow value)
         {
             CheckDisplayRowService.UpdateCheckDisplayRow(id, value);
         }

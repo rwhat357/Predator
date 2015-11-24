@@ -23,12 +23,10 @@ namespace Predator.Api.Services
             return row;
         }
 
-        public static CheckDisplayRow[] RetrieveAllCheckDisplayRows()
+        public static IEnumerable<CheckDisplayRow> RetrieveAllCheckDisplayRows()
         {
-            CheckDisplayRow[] rows = null;
-            if (isTesting) rows = testProvider.RetrieveAllCheckDisplayRows();
-            else rows = provider.RetrieveAllCheckDisplayRows();
-            return rows;
+            if (isTesting) return testProvider.RetrieveAllCheckDisplayRows();
+            else return provider.RetrieveAllCheckDisplayRows();
         }
 
         public static void DeleteCheckDisplayRow(int checkID)
@@ -37,16 +35,16 @@ namespace Predator.Api.Services
             else provider.DeleteCheckDisplayRow(checkID);
         }
 
-        public static void CreateCheckDisplayRow(string rowString)
+        public static void CreateCheckDisplayRow(CheckDisplayRow row)
         {
-            if (isTesting) testProvider.CreateCheckDisplayRow(rowString);
-            else provider.CreateCheckDisplayRow(rowString);
+            if (isTesting) testProvider.CreateCheckDisplayRow(row);
+            else provider.CreateCheckDisplayRow(row);
         }
 
-        public static void UpdateCheckDisplayRow(int id, string value)
+        public static void UpdateCheckDisplayRow(int id, CheckDisplayRow row)
         {
-            if (isTesting) testProvider.UpdateCheckDisplayRow(id, value);
-            else provider.UpdateCheckDisplayRow(id, value);
+            if (isTesting) testProvider.UpdateCheckDisplayRow(id, row);
+            else provider.UpdateCheckDisplayRow(id, row);
         }
     }
 }
