@@ -17,9 +17,41 @@ namespace Predator.Api.Providers
             {
                 if (MySqlConnectionManager.OpenConnection(conn))
                 {
-                    string commandtext = "";
+                    string commandtext = "CALL CreateCheck(@STORENUM,@BANKNAME,@RNUM,@ANUM,@CNUM,@FIRSTNAME,@LASTNAME,@FIRSTNAME2,@LASTNAME2,@INADDRESS,@INCITY,@INSTATE,@INZIPCODE,@PHONE,@CHECKAMOUNT,@CHECKDATE)";
                     using (MySqlCommand command = new MySqlCommand(commandtext, conn))
                     {
+                        command.Parameters.Add("@STORENUM", MySqlDbType.Int32);
+                        command.Parameters["@STORENUM"].Value = row.idStore;
+                        command.Parameters.Add("@BANKNAME", MySqlDbType.VarChar);
+                        command.Parameters["@BANKNAME"].Value = row.bName;
+                        command.Parameters.Add("@ANUM", MySqlDbType.Int32);
+                        command.Parameters["@ANUM"].Value = row.idAccount;
+                        command.Parameters.Add("@RNUM", MySqlDbType.Int32);
+                        command.Parameters["@RNUM"].Value = row.routingNum;
+                        command.Parameters.Add("@CNUM", MySqlDbType.Int32);
+                        command.Parameters["@CNUM"].Value = row.checkNum;
+                        command.Parameters.Add("@FIRSTNAME", MySqlDbType.VarChar);
+                        command.Parameters["@FIRSTNAME"].Value = row.fName;
+                        command.Parameters.Add("@LASTNAME", MySqlDbType.VarChar);
+                        command.Parameters["@LASTNAME"].Value = row.lName;
+                        command.Parameters.Add("@FIRSTNAME2", MySqlDbType.VarChar);
+                        command.Parameters["@FIRSTNAME2"].Value = (row.fName2 != null && row.fName2 != "") ? row.fName2 : null;
+                        command.Parameters.Add("@LASTNAME2", MySqlDbType.VarChar);
+                        command.Parameters["@LASTNAME2"].Value = (row.lName2 != null && row.lName2 != "") ? row.lName2 : null; 
+                        command.Parameters.Add("@INADDRESS", MySqlDbType.VarChar);
+                        command.Parameters["@INADDRESS"].Value = row.address;
+                        command.Parameters.Add("@INCITY", MySqlDbType.VarChar);
+                        command.Parameters["@INCITY"].Value = row.city;
+                        command.Parameters.Add("@INSTATE", MySqlDbType.VarChar);
+                        command.Parameters["@INSTATE"].Value = row.state;
+                        command.Parameters.Add("@INZIPCODE", MySqlDbType.Int32);
+                        command.Parameters["@INZIPCODE"].Value = row.zipcode;
+                        command.Parameters.Add("@PHONE", MySqlDbType.VarChar);
+                        command.Parameters["@PHONE"].Value = (row.phoneNum != null && row.phoneNum != "") ? row.phoneNum : null;
+                        command.Parameters.Add("@CHECKAMOUNT", MySqlDbType.Float);
+                        command.Parameters["@CHECKAMOUNT"].Value = row.amount;
+                        command.Parameters.Add("@CHECKDATE", MySqlDbType.DateTime);
+                        command.Parameters["@CHECKDATE"].Value = row.dateWritten;
                         command.ExecuteNonQuery();
                     }
                     MySqlConnectionManager.CloseConnection(conn);
@@ -154,14 +186,47 @@ namespace Predator.Api.Providers
                 if (MySqlConnectionManager.OpenConnection(conn))
                 {
                     string commandText =
-@"UPDATE staff
-SET idAccount=@IDACCOUNT, idStore=@IDSTORE, checkNum=@CHECKNUM, amount=@AMOUNT, dateWritten=@DATEWRITTEN,{AMOUNTPAID}{PAIDDATE} routingNum=@ROUTINGNUM,
-accountNum=@ACCOUNTNUM, fName=@FNAME, lName=@LNAME,{FNAME2}{LNAME2} address=@ADDRESS, city=@CITY, state=@STATE, zipcode=@ZIPCODE,{PHONENUM} bName=@BNAME,
-bAddress=@BADDRESS, bCity=@BCITY, bState=@BSTATE, bZipcode=@BZIPCODE, idStoreGroup=@IDSTOREGROUP, sName=@SNAME, sAddress=SADDRESS, sCity=@SCITY, sState=@SSTATE,
-sZipcode=@SZIPCODE
+@"UPDATE chekue
+SET idAccount=@IDACCOUNT, idStore=@IDSTORE, checkNum=@CHECKNUM, amount=@AMOUNT, dateWritten=@DATEWRITTEN{AMOUNTPAID}{PAIDDATE}
 WHERE idCheck=@IDCHECK";
+                    if(row.amountPaid != -1)
+                    {
+                        commandText = commandText.Replace("{AMOUNTPAID}", ", amountPaid=@AMOUNTPAID");
+                    }
+                    else
+                    {
+                        commandText = commandText.Replace("{AMOUNTPAID}", "");
+                    }
+                    if(row.paidDate != null && row.paidDate != new DateTime(0))
+                    {
+                        commandText = commandText.Replace("{PAIDDATE}", ", paidDate=@PAIDDATE");
+                    }
+                    else
+                    {
+                        commandText = commandText.Replace("{PAIDDATE}", "");
+                    }
                     MySqlCommand command = new MySqlCommand(commandText, conn);
-
+                    //add and set all the parameters here.  Some hefty crying must first occur before I implement this....
+                    if(row.amountPaid != -1)
+                    {
+                        command.Parameters.Add("@AMOUNTPAID", MySqlDbType.Float);
+                        command.Parameters["@AMOUNTPAID"].Value = row.amountPaid;
+                    }
+                    if(row.paidDate != null && row.paidDate != new DateTime(0))
+                    {
+                        command.Parameters.Add("@PAIDDATE", MySqlDbType.DateTime);
+                        command.Parameters["@PAIDDATE"].Value = row.paidDate;
+                    }
+                    command.Parameters.Add("@IDACCOUNT", MySqlDbType.Int32);
+                    command.Parameters["@IDACCOUNT"].Value = row.idAccount;
+                    command.Parameters.Add("@IDSTORE", MySqlDbType.Int32);
+                    command.Parameters["@IDSTORE"].Value = row.idStore;
+                    command.Parameters.Add("@CHECKNUM", MySqlDbType.Int32);
+                    command.Parameters["@CHECKNUM"].Value = row.checkNum;
+                    command.Parameters.Add("@AMOUNT", MySqlDbType.Float);
+                    command.Parameters["@AMOUNT"].Value = row.amount;
+                    command.Parameters.Add("@DATEWRITTEN", MySqlDbType.DateTime);
+                    command.Parameters["@DATEWRITTEN"].Value = row.dateWritten;
                     command.ExecuteNonQuery();
                     MySqlConnectionManager.CloseConnection(conn);
                 }

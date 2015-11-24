@@ -14,19 +14,19 @@ namespace Predator.Api.Models
         public int checkNum { get; set; }
         public float amount { get; set; }
         public DateTime dateWritten { get; set; }
-        public float amountPaid { get; set; }
-        public DateTime paidDate { get; set; }
+        public float amountPaid { get; set; }//NULLABLE, default is -1
+        public DateTime paidDate { get; set; }//NULLABLE, default is new DateTime(0)
         public int routingNum { get; set; }
         public int accountNum { get; set; }
         public string fName { get; set; }
         public string lName { get; set; }
-        public string fName2 { get; set; }
-        public string lName2 { get; set; }
+        public string fName2 { get; set; }//NULLABLE, default is ""
+        public string lName2 { get; set; }//NULLABLE, default is ""
         public string address { get; set; }
         public string city { get; set; }
         public string state { get; set; }
         public int zipcode { get; set; }
-        public string phoneNum { get; set; }
+        public string phoneNum { get; set; }//NULLABLE
         public string bName { get; set; }
         public string bAddress { get; set; }
         public string bCity { get; set; }
