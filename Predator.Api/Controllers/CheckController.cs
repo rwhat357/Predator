@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Predator.Api.Providers;
+using Predator.Api.Services;
 
 namespace Predator.Api.Controllers
 {
@@ -14,8 +14,7 @@ namespace Predator.Api.Controllers
         // GET api/accounts
         public IEnumerable<Check> Get()
         {
-            var checkProvider = new CheckProvider();
-            var results = checkProvider.GetAll();
+            var results = CheckService.GetAll();
 
             return results;
         }
@@ -23,25 +22,25 @@ namespace Predator.Api.Controllers
         // GET api/accounts/5
         public Check Get(int id)
         {
-            var checkProvider = new CheckProvider();
-            return checkProvider.GetCheck(id);
+            return CheckService.GetCheck(id);
         }
 
         // POST api/accounts
         public Check Post([FromBody]Check check)
         {
-            var checkProvider = new CheckProvider();
-            return checkProvider.AddCheck(check);
+            return CheckService.AddCheck(check);
         }
 
         // PUT api/accounts/5
         public void Put(int id, [FromBody]string value)
         {
+            throw new NotImplementedException();
         }
 
         // DELETE api/accounts/5
         public void Delete(int id)
         {
+            CheckService.DeleteCheck(id);
         }
     }
 }
