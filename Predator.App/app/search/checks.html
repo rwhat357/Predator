@@ -50,9 +50,9 @@
                 </a>
             </th>
             <th>
-                <a href="#" ng-click="vm.sortType = 'checkDate'; vm.sortReverse = !vm.sortReverse"> Date
-                    <span ng-show="vm.sortType == 'checkDate' && !vm.sortReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="vm.sortType == 'checkDate' && vm.sortReverse" class="fa fa-caret-up"></span>
+                <a href="#" ng-click="vm.sortType = 'dateWritten'; vm.sortReverse = !vm.sortReverse"> Date Written
+                    <span ng-show="vm.sortType == 'dateWritten' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="vm.sortType == 'dateWritten' && vm.sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th>
@@ -71,11 +71,11 @@
             <td><span ng-model="check.accountNum">{{ check.accountNum || 'empty' }}</span></td>
             <td><span ng-model="check.routingNumber">{{ check.routingNum || 'empty' }}</span></td>
             <td><span ng-model="check.amount">{{ check.amount || 'empty' }}</span></td>
-            <td><span ng-model="check.checkDate">{{ check.checkDate | date:'MM/dd/yyyy @ h:mma' || 'empty' }}</span></td>
+            <td><span ng-model="check.dateWritten">{{ ( check.dateWritten | date:'MM/dd/yyyy' ) || 'empty' }}</span></td>
             <td><span ng-model="check.offenseLevel">{{ check.offenseLevel || 'empty' }}</span></td>
             <td>
                 <button class="btn btn-xs btn-primary" ng-click="vm.openCheckDetailsModal(check)">Details</button>
-                <button class="btn btn-xs btn-danger"ng-click="vm.removeCheck(check.id)">Remove</button>
+                <button class="btn btn-xs btn-danger" ng-click="vm.removeCheck(check)">Remove</button>
             </td>
         </tr>
     </tbody>

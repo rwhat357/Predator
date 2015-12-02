@@ -5,7 +5,7 @@
         .controller('ChecksCtrl', ChecksCtrl)
         .controller('CheckDetailsCtrl', CheckDetailsCtrl);
 
-    function ChecksCtrl($filter, $http, $uibModal, checkResource, toastr) {
+    function ChecksCtrl($filter, $http, $uibModal, toastr, checkResource) {
 
         var vm = this;
         vm.inserted = {};
@@ -20,11 +20,16 @@
         vm.selectCheck = selectCheck;
         vm.removeCheck = removeCheck;
 
+        activate();
+
         /////////////////////////////////
 
-        // checkResource.query(function(data){
-        // 	vm.checks = data;
-        // })
+        function activate(){
+	        checkResource.query(function(data){
+	        	vm.checks = data;
+	        })
+        }
+
 
 	    function selectCheck() {
 	        vm.printQueue = $filter('filter')(vm.checks, {
@@ -52,9 +57,7 @@
 
 
         function printSelectedChecks(){
-
-        	alert(vm.printQueue);
-
+        	
 			var doc = new jsPDF();
 
 			var letter = 	
@@ -99,7 +102,7 @@ __________Koopa Krew Inc________________";
         // vm.saveCheck = saveCheck;
         // vm.removeCheck = removeCheck;
         // vm.addCheck = addCheck;
-        vm.checks = 
+        //vm.checks = 
         [
 	        {
 	        	id: 0,
@@ -431,11 +434,6 @@ __________Koopa Krew Inc________________";
 	        	cashierId:3,
 	        	offenseLevel:1
 	        },
-
-
-
-	        
-
         ]
 
         // //////////////////
@@ -448,9 +446,9 @@ __________Koopa Krew Inc________________";
 	       //  return $http.post('/saveCheck', data);
         // }
 
-        function removeCheck (index){
-        	_.each(vm.checks, function(check, i){
-        		if ( index === check.id){
+        function removeCheck (check){
+        	_.each(vm.checks, function(vmCheck, i){
+        		if ( check.idCheck === vmCheck.idCheck){
 	         		vm.checks.splice(i, 1);
         		}
         	});

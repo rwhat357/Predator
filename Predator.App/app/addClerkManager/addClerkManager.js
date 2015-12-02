@@ -2,31 +2,29 @@
     'use strict';
 
     angular.module('PredatorApp')
-        .controller('AddCheckCtrl', AddCheckCtrl);
+        .controller('AddClerkManagerCtrl', AddClerkManagerCtrl);
 
-    function AddCheckCtrl(toastr) {
+    function AddClerkManagerCtrl(toastr) {
 
         var vm = this;
-        vm.check = {
-            offenseLevel: 1
-        };
-        vm.checks = [];
+        vm.name = 'Fredy';
 
-        vm.addCheck = addCheck;
+        vm.manager = {};
+        vm.managers = [];
+
+        vm.addClerkManager = addClerkManager;
         vm.clearAllFields = clearAllFields;
 
         ////////////////////////////////
 
-        function addCheck(){
+        function addClerkManager(){
             vm.checks.push(vm.check);
             toastr.success('Successfully added.');
             clearAllFields();
         }
 
         function clearAllFields(){
-            vm.check = {
-                offenseLevel: 1
-            };
+            vm.manager = {};
         }
 
 

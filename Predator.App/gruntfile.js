@@ -25,32 +25,32 @@ module.exports = function(grunt) {
 			}
 		},
 		//Take a look at Karma Server with Grunt Watch in grunt-karma's readme
-		karma: {
-			options: {
-    			configFile: 'karma.conf.js'
-    		},
-			prod: {
-				basePath: 'dist',
-				options: { //files needs to be wrapped inside an options obj.
-					files: [
-						'Scripts/thirdparty.min.js', //minified third party
-						'../scripts-for-testing/angular-mocks.js',
-						'../scripts-for-testing/**/*.js',
-						'app/app.min.js', //minified app
-						'../app/**/*.spec.js'
-					]
-				},
-				browsers: ['PhantomJS'],
-    			logLevel: 'ERROR',
-    			singleRun: true,
-    			reporters: ['teamcity']
-			},
-			dev: {
-				background: true,  //run in a child process so it doesn't block subsequent grunt tasks
-				autoWatch: false, //watch task handles this.
-				singleRun: false  //leave the karma server running.
-			}
-		},
+		// karma: {
+		// 	options: {
+  //   			configFile: 'karma.conf.js'
+  //   		},
+		// 	prod: {
+		// 		basePath: 'dist',
+		// 		options: { //files needs to be wrapped inside an options obj.
+		// 			files: [
+		// 				'Scripts/thirdparty.min.js', //minified third party
+		// 				'../scripts-for-testing/angular-mocks.js',
+		// 				'../scripts-for-testing/**/*.js',
+		// 				'app/app.min.js', //minified app
+		// 				'../app/**/*.spec.js'
+		// 			]
+		// 		},
+		// 		browsers: ['PhantomJS'],
+  //   			logLevel: 'ERROR',
+  //   			singleRun: true,
+  //   			reporters: ['teamcity']
+		// 	},
+		// 	dev: {
+		// 		background: true,  //run in a child process so it doesn't block subsequent grunt tasks
+		// 		autoWatch: false, //watch task handles this.
+		// 		singleRun: false  //leave the karma server running.
+		// 	}
+		// },
 		ngAnnotate: {
 			//Reason: http://scotch.io/tutorials/javascript/declaring-angularjs-modules-for-minification
 			app: {
@@ -138,11 +138,11 @@ module.exports = function(grunt) {
 					'app/**/*.json'
 				]
 			},
-
-			karma: {
-				files: ['Scripts/**/*.js', 'scripts-for-testing/**/*.js', 'app/**/*.js'],
-				tasks: ['karma:dev:run']
-			},
+			// don't use karma
+			// karma: {
+			// 	files: ['Scripts/**/*.js', 'scripts-for-testing/**/*.js', 'app/**/*.js'],
+			// 	tasks: ['karma:dev:run']
+			// },
 			stylus: {
 				files: ['app/**/*.styl', 'Content/**/*.styl'],
 				tasks: ['stylus']

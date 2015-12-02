@@ -1,0 +1,128 @@
+<legend>Add a New Clerk Manager</legend>
+<p>All fields marked with (*) are required.</p>
+
+<form class="form-horizontal" name="clerkManagerForm"
+      novalidate>
+    <fieldset>
+        <div class="form-group"
+             ng-class="{'has-error':clerkManagerForm.inputCheckNum.$invalid &&
+                                    clerkManagerForm.inputCheckNum.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputCheckNum">First Name *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputCheckNum"
+                       name="inputCheckNum"
+                       type="text"
+                       placeholder="eg. 1211434"
+                       ng-model="vm.check.checkNum"
+                       required/>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error':clerkManagerForm.inputAccountNum.$invalid &&
+                                    clerkManagerForm.inputAccountNum.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputAccountNum">Last Name *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputAccountNum"
+                       name="inputAccountNum"
+                       type="text"
+                       placeholder="eg. 342"
+                       ng-model="vm.check.account.accountNum"
+                       required/>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error':clerkManagerForm.inputRoutingNum.$invalid &&
+                                    clerkManagerForm.inputRoutingNum.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputRoutingNum">Username *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputRoutingNum"
+                       name="inputRoutingNum"
+                       type="text"
+                       placeholder="eg. 33442"
+                       ng-model="vm.check.account.routingNum"
+                       required/>
+            </div>
+        </div>        
+        <div class="form-group"
+             ng-class="{'has-error':clerkManagerForm.inputAmount.$invalid &&
+                                    clerkManagerForm.inputAmount.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputAmount"> Password *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputAmount"
+                       name="inputAmount"
+                       type="text"
+                       placeholder="eg. 500.00"
+                       ng-model="vm.check.amount"
+                       required/>
+            </div>
+        </div>          
+        <div class="form-group"
+             ng-class="{'has-error':clerkManagerForm.inpuOffenseLevel.$invalid &&
+                                    clerkManagerForm.inpuOffenseLevel.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inpuOffenseLevel"> Re-type Password *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inpuOffenseLevel"
+                       name="inpuOffenseLevel"
+                       type="text"
+                       ng-model="vm.check.offenseLevel"
+                       required/>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error':clerkManagerForm.inpuOffenseLevel.$invalid &&
+                                    clerkManagerForm.inpuOffenseLevel.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inpuOffenseLevel"> Access Level *</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inpuOffenseLevel"
+                       name="inpuOffenseLevel"
+                       type="text"
+                       ng-model="vm.check.offenseLevel"
+                       required/>
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                    <span>
+                        <button class="btn btn-primary"
+                                style="width:80px;margin-right:10px"
+                                ng-click="vm.addCheck(clerkManagerForm.$valid)"
+                                ng-disabled="clerkManagerForm.$invalid">
+                            Save
+                        </button>
+                    </span>
+                    <span>
+                        <button class="btn btn-default"
+                                style="width:70px"
+                                ng-click="vm.clearAllFields()">
+                            Clear
+                        </button>
+                    </span>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<!-- {{ vm.check | json}} -->
+<br>
+<!-- {{ vm.checks | json}} -->
+
+
+

@@ -36,9 +36,9 @@ namespace Predator.Api.Providers
                                 IdStore = reader.GetInt32("idStore"),
                                 CheckNum = reader.GetInt32("checkNum"),
                                 Amount = reader.GetFloat("amount"),
-                                DateWritten = reader.GetDateTime("dateWritten"),
-                                AmountPaid = (!reader.IsDBNull(reader.GetOrdinal("amountPaid"))) ? reader.GetFloat("amountPaid") : -1,
-                                PaidDate = (!reader.IsDBNull(reader.GetOrdinal("paidDate"))) ? reader.GetDateTime("paidDate") : new DateTime(0)
+                                //DateWritten = reader.GetDateTime("dateWritten"),
+                                //AmountPaid = (!reader.IsDBNull(reader.GetOrdinal("amountPaid"))) ? reader.GetFloat("amountPaid") : -1,
+                                //PaidDate = (!reader.IsDBNull(reader.GetOrdinal("paidDate"))) ? reader.GetDateTime("paidDate") : new DateTime(0)
                             });
                         }
                     }
