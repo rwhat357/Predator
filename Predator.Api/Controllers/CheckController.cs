@@ -11,6 +11,7 @@ namespace Predator.Api.Controllers
 {
     public class CheckController : ApiController
     {
+        /*
         // GET api/accounts
         public IEnumerable<Check> Get()
         {
@@ -42,5 +43,6 @@ namespace Predator.Api.Controllers
         {
             CheckService.DeleteCheck(id);
         }
+        */
     }
 }
