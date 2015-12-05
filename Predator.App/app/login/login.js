@@ -16,26 +16,21 @@
 
         vm.login = login;
         vm.register = register;
+        vm.resetPassword = resetPassword;
 
         /////////////////////
 
         function login(){
-            LoginSvc.authenticate(vm.user);
-
-            if (LoginSvc.getIsAuthenticated()){
-                $state.go('search');
-                toastr.success('Successfully logged in!');
-            } else {
-                toastr.error('Username or password was incorrect!');
-                $state.go('login');
-            }
-            
+            LoginSvc.authenticate(vm.user);  
         }
 
         function register(){
         	toastr.error('Feature not implemented yet!');
         }
 
+        function resetPassword(){
+            toastr.error('Feature not implemented yet!');
+        }
 
 
     }

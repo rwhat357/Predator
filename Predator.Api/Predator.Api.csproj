@@ -209,7 +209,7 @@
     <Compile Include="Controllers\CheckDisplayRowController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,11 +218,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CheckDisplayRow.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\CheckDisplayRowProvider.cs" />
     <Compile Include="Providers\CheckProvider.cs" />
     <Compile Include="Providers\StaffProvider.cs" />
+    <Compile Include="Providers\StoreProvider.cs" />
     <Compile Include="Providers\TestCheckDisplayRowProvider.cs" />
     <Compile Include="Providers\TestCheckProvider.cs" />
     <Compile Include="Providers\TestStaffProvider.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Services\CheckDisplayRowService.cs" />
     <Compile Include="Services\CheckService.cs" />
     <Compile Include="Services\StaffService.cs" />
+    <Compile Include="Services\StoreService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\MySqlConnectionManager.cs" />
