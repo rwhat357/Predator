@@ -4,13 +4,14 @@
     var app = angular.module('PredatorApp')
         .controller('CommonCtrl', CommonCtrl);
 
-    function CommonCtrl($http, $window, LoginSvc) {
+    function CommonCtrl($http, $window, $state, LoginSvc, toastr) {
 
         var vm = this;
         vm.name = 'Fredy CommonCtrl';
 
         vm.canSeeHeader = canSeeHeader;
         vm.seeReports = seeReports;
+        vm.logout = logout;
 
         /////////////////////
 
@@ -33,10 +34,12 @@
                 })
                 .error(function (response){
                     console.error("Failed to post");
-                })
-            }
+                });
+        }
 
-
+        function logout(){
+            LoginSvc.logout();
+        }
 
     }
 

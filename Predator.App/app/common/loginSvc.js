@@ -5,21 +5,16 @@
     	.module('PredatorApp')
     	.factory('LoginSvc',  LoginSvc);
 
-    function LoginSvc($cookieStore, $state){
+    // https://docs.angularjs.org/api/ngCookies/service/$cookieStore#example
+    // http://www.w3schools.com/js/js_cookies.asp
+    function LoginSvc( $cookieStore, $state, $http, appSettings, toastr ){
     	
-    	var userInfo = {
-    		username: '',
-    		password: '',
-    		email: '',
-    		level: ''
-    	}
-
-    	var isAuthenticated = false;
-
+    	var loggedInUser = '';
     	var service  = {
             authenticate: authenticate,
             getUserInfo: getUserInfo,
-            getIsAuthenticated: getIsAuthenticated
+            getIsAuthenticated: getIsAuthenticated,
+            logout: logout
         };
 
         return service;
@@ -28,21 +23,31 @@
 
         function authenticate(user) {
 
-        	//TODO: populate userInfo by checking
-        	userInfo = {
-        		username: 'admin',
-        		password: 'admin',
-        		email: 'admin@predator.com',
-        		level: 3
-        	}
+            var users; 
 
-        	if (user.username == 'admin' && user.password == 'admin'){
+            $http.get(appSettings.serverPath + '/api/staff')
+                .success(function(data) {
+                    users = data;
 
-                // Put cookie
-                $cookieStore.put('predator_username', user.username);
-                $cookieStore.put('predator_password', user.password);
-        	}
+                    var foundUser = _.find(users, function(_user){
+                        return ( _user.username == user.username && _user.password == user.password );
+                    });
 
+                    if (foundUser == undefined){
+                        toastr.error('Username or password was incorrect!');
+                        $state.go('login');
+                    } else {
+                        loggedInUser = foundUser.username;
+
+                        // Put cookie
+                        $cookieStore.put('predator_username', user.username);
+                        $cookieStore.put('predator_password', user.password);
+
+                        $state.go('search');
+                        toastr.success('Successfully logged in!');
+                    }
+
+                });
         }
 
         function getUserInfo(){
@@ -54,16 +59,22 @@
             // Get cookie
             var PredatorLoginCookie = $cookieStore.get('predator_username');
 
-            if ( PredatorLoginCookie === 'admin' ) {
-                //$state.go('search');
+            if ( PredatorLoginCookie ) {
                 return true;
             } 
-
-            //$state.go('login');
             return false;
         }
 
+        function logout(){
+            // https://docs.angularjs.org/api/ngCookies/service/$cookieStore#example
+            // Removing a cookie
+            loggedInUser = '';
+            $cookieStore.remove('predator_username');
+            $cookieStore.remove('predator_password');
 
+            $state.go('login');
+            toastr.success('Successfully logged out!');
+        }
     }
 
 })();
