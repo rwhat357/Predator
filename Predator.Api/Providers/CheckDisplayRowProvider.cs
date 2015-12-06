@@ -227,6 +227,8 @@ WHERE idCheck=@IDCHECK";
                     command.Parameters["@AMOUNT"].Value = row.amount;
                     command.Parameters.Add("@DATEWRITTEN", MySqlDbType.DateTime);
                     command.Parameters["@DATEWRITTEN"].Value = row.dateWritten;
+                    command.Parameters.Add("@IDCHECK", MySqlDbType.Int32);
+                    command.Parameters["@IDCHECK"].Value = id;
                     command.ExecuteNonQuery();
                     MySqlConnectionManager.CloseConnection(conn);
                 }
