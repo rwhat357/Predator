@@ -21,7 +21,7 @@ namespace Predator.Api
             config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            //config.EnableCors();
+            config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
