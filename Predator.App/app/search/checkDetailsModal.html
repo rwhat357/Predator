@@ -3,35 +3,35 @@
     <h3 class="modal-title">Check Details</h3>
 </div>
 <div class="modal-body">
-    <form class="" editable-form name="editableForm">
+    <form class="" editable-form name="editableForm" onaftersave="vm.saveCheck(vm.check)">
         <div>
             <span class="col-xs-3 text-right title">Check number: </span>
-            <span editable-text="vm.check.checkNum" e-required>{{ vm.check.checkNum || 'empty' }}</span>
+            <span editable-number="vm.check.checkNum" e-required>{{ vm.check.checkNum || 'empty' }}</span>
         </div>
         </br>
         <div>
             <span class="col-xs-3 text-right title">Account number: </span>
-            <span editable-text="vm.check.accountNum" e-required>{{ vm.check.accountNum || 'empty' }}</span>
+            <span editable-number="vm.check.accountNum" e-required>{{ vm.check.accountNum || 'empty' }}</span>
         </div>
         </br>
         <div>
             <span class="col-xs-3 text-right title">Routing number: </span>
-            <span editable-text="vm.check.routingNum" e-required>{{ vm.check.routingNum || 'empty' }}</span>
+            <span editable-number="vm.check.routingNum" e-required>{{ vm.check.routingNum || 'empty' }}</span>
         </div>
         </br>
         <div>
-            <span class="col-xs-3 text-right title">Amount: </span>
+            <span class="col-xs-3 text-right title">Amount: $ </span>
             <span editable-text="vm.check.amount" e-required>{{ vm.check.amount || 'empty' }}</span>
         </div>
         </br>
         <div>
             <span class="col-xs-3 text-right title">Date: </span>
-            <span editable-text="vm.check.checkDate" e-required>{{ vm.check.checkDate || 'empty' }}</span>
+            <span editable-date="vm.check.checkDate" e-required>{{ vm.check.checkDate || 'empty' }}</span>
         </div>
         </br>              
         <div>
             <span class="col-xs-3 text-right title">Offense level: </span>
-            <span editable-text="vm.check.offenseLevel" e-required>{{ vm.check.offenseLevel || 'empty' }}</span>
+            <span editable-number="vm.check.offenseLevel" e-required>{{ vm.check.offenseLevel || 'empty' }}</span>
         </div>
         </br>
         <div>

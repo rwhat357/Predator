@@ -6,9 +6,12 @@ using System.Net.Http;
 using System.Web.Http;
 using Predator.Api.Models;
 using Predator.Api.Services;
+using System.Web.Http.Cors;
 
 namespace Predator.Api.Controllers
 {
+    //[EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
+    [EnableCors("*", "*", "*")]
     public class CheckDisplayRowController : ApiController
     {
         // GET: api/CheckDisplayRow

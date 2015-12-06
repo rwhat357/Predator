@@ -5,7 +5,7 @@
         .controller('ChecksCtrl', ChecksCtrl)
         .controller('CheckDetailsCtrl', CheckDetailsCtrl);
 
-    function ChecksCtrl($filter, $http, $uibModal, toastr, checkResource) {
+    function ChecksCtrl($filter, $http, $uibModal, toastr, checkResource, appSettings) {
 
         var vm = this;
         vm.inserted = {};
@@ -17,6 +17,7 @@
 
         vm.openCheckDetailsModal = openCheckDetailsModal;
         vm.printSelectedChecks = printSelectedChecks;
+        vm.removeSelectedChecks = removeSelectedChecks;
         vm.selectCheck = selectCheck;
         vm.removeCheck = removeCheck;
 
@@ -29,7 +30,6 @@
 	        	vm.checks = data;
 	        })
         }
-
 
 	    function selectCheck() {
 	        vm.printQueue = $filter('filter')(vm.checks, {
@@ -49,12 +49,26 @@
 				 		return vm.checks;
 					},
 					check: function(){
-						return check;
+						var retrievedCheck = checkResource.get( { id: check.idCheck }, function() {
+
+						});
+
+						return retrievedCheck;
 					}
 				}
 			})
         }
 
+	    
+	    function removeSelectedChecks() {
+
+        	_.each(vm.printQueue, function(check, i){
+        		removeCheck(check);
+        	});
+
+        	vm.printQueue = [];
+	        toastr.success('Removed checks!');
+	    }
 
         function printSelectedChecks(){
         	
@@ -102,339 +116,7 @@ __________Koopa Krew Inc________________";
         // vm.saveCheck = saveCheck;
         // vm.removeCheck = removeCheck;
         // vm.addCheck = addCheck;
-        //vm.checks = 
-        [
-	        {
-	        	id: 0,
-	        	checkNum: 3,
-	        	accountNum: 11103093,
-	        	routingNum: 441103093,
-	        	amount: 500.66,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 0,
-	        	cashierId:5,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 1,
-	        	checkNum: 4,
-	        	accountNum:11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 2,
-	        	checkNum: 88,
-	        	accountNum: 11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 3,
-	        	checkNum: 5,
-	        	accountNum: 211274450,
-	        	routingNum: 34324,
-	        	amount: 200.0001,
-	        	checkDate:"2014-03-20T00:00:00",
-	        	storeId: 5,
-	        	cashierId:16,
-	        	offenseLevel:3
-	        },
-	        {
-	        	id: 3,
-	        	checkNum: 7,
-	        	accountNum: 26013673,
-	        	routingNum: 4323423,
-	        	amount: 7778,
-	        	checkDate:"2010-01-01T00:00:00",
-	        	storeId: 29,
-	        	cashierId:3,
-	        	offenseLevel:1
-	        },	        
-	        {
-	        	id: 5,
-	        	checkNum: 3,
-	        	accountNum: 11103093,
-	        	routingNum: 441103093,
-	        	amount: 500.66,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 0,
-	        	cashierId:5,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 4,
-	        	checkNum: 4,
-	        	accountNum:11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 6,
-	        	checkNum: 4,
-	        	accountNum: 11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 8,
-	        	checkNum: 5,
-	        	accountNum: 211274450,
-	        	routingNum: 34324,
-	        	amount: 200.0001,
-	        	checkDate:"2014-03-20T00:00:00",
-	        	storeId: 5,
-	        	cashierId:16,
-	        	offenseLevel:3
-	        },
-	        {
-	        	id: 8,
-	        	checkNum: 7,
-	        	accountNum: 26013673,
-	        	routingNum: 4323423,
-	        	amount: 7778,
-	        	checkDate:"2010-01-01T00:00:00",
-	        	storeId: 29,
-	        	cashierId:3,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 10,
-	        	checkNum: 3,
-	        	accountNum: 11103093,
-	        	routingNum: 441103093,
-	        	amount: 500.66,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 0,
-	        	cashierId:5,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 11,
-	        	checkNum: 4,
-	        	accountNum:11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 12,
-	        	checkNum: 4,
-	        	accountNum: 11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 13,
-	        	checkNum: 5,
-	        	accountNum: 211274450,
-	        	routingNum: 34324,
-	        	amount: 200.0001,
-	        	checkDate:"2014-03-20T00:00:00",
-	        	storeId: 5,
-	        	cashierId:16,
-	        	offenseLevel:3
-	        },
-	        {
-	        	id: 14,
-	        	checkNum: 7,
-	        	accountNum: 26013673,
-	        	routingNum: 4323423,
-	        	amount: 7778,
-	        	checkDate:"2010-01-01T00:00:00",
-	        	storeId: 29,
-	        	cashierId:3,
-	        	offenseLevel:1
-	        },	        
-	        {
-	        	id: 15,
-	        	checkNum: 3,
-	        	accountNum: 11103093,
-	        	routingNum: 441103093,
-	        	amount: 500.66,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 0,
-	        	cashierId:5,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 16,
-	        	checkNum: 4,
-	        	accountNum:11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 17,
-	        	checkNum: 4,
-	        	accountNum: 11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 19,
-	        	checkNum: 5,
-	        	accountNum: 211274450,
-	        	routingNum: 34324,
-	        	amount: 200.0001,
-	        	checkDate:"2014-03-20T00:00:00",
-	        	storeId: 5,
-	        	cashierId:16,
-	        	offenseLevel:3
-	        },
-	        {
-	        	id: 18,
-	        	checkNum: 7,
-	        	accountNum: 26013673,
-	        	routingNum: 4323423,
-	        	amount: 7778,
-	        	checkDate:"2010-01-01T00:00:00",
-	        	storeId: 29,
-	        	cashierId:3,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 20,
-	        	checkNum: 3,
-	        	accountNum: 11103093,
-	        	routingNum: 441103093,
-	        	amount: 500.66,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 0,
-	        	cashierId:5,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 21,
-	        	checkNum: 4,
-	        	accountNum:11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 22,
-	        	checkNum: 4,
-	        	accountNum: 11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 23,
-	        	checkNum: 5,
-	        	accountNum: 211274450,
-	        	routingNum: 34324,
-	        	amount: 200.0001,
-	        	checkDate:"2014-03-20T00:00:00",
-	        	storeId: 5,
-	        	cashierId:16,
-	        	offenseLevel:3
-	        },
-	        {
-	        	id: 24,
-	        	checkNum: 7,
-	        	accountNum: 26013673,
-	        	routingNum: 4323423,
-	        	amount: 7778,
-	        	checkDate:"2010-01-01T00:00:00",
-	        	storeId: 29,
-	        	cashierId:3,
-	        	offenseLevel:1
-	        },	        
-	        {
-	        	id: 26,
-	        	checkNum: 3,
-	        	accountNum: 11103093,
-	        	routingNum: 441103093,
-	        	amount: 500.66,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 0,
-	        	cashierId:5,
-	        	offenseLevel:1
-	        },
-	        {
-	        	id: 27,
-	        	checkNum: 4,
-	        	accountNum:11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 28,
-	        	checkNum: 4,
-	        	accountNum: 11103093,
-	        	routingNum: 411103093,
-	        	amount: 1000.343,
-	        	checkDate:"2015-04-05T00:00:00",
-	        	storeId: 2,
-	        	cashierId:4,
-	        	offenseLevel:2
-	        },
-	        {
-	        	id: 29,
-	        	checkNum: 5,
-	        	accountNum: 211274450,
-	        	routingNum: 34324,
-	        	amount: 200.0001,
-	        	checkDate:"2014-03-20T00:00:00",
-	        	storeId: 5,
-	        	cashierId:16,
-	        	offenseLevel:3
-	        },
-	        {
-	        	id: 30,
-	        	checkNum: 7,
-	        	accountNum: 26013673,
-	        	routingNum: 4323423,
-	        	amount: 7778,
-	        	checkDate:"2010-01-01T00:00:00",
-	        	storeId: 29,
-	        	cashierId:3,
-	        	offenseLevel:1
-	        },
-        ]
+
 
         // //////////////////
 
@@ -447,28 +129,54 @@ __________Koopa Krew Inc________________";
         // }
 
         function removeCheck (check){
-        	_.each(vm.checks, function(vmCheck, i){
-        		if ( check.idCheck === vmCheck.idCheck){
-	         		vm.checks.splice(i, 1);
+     //    	_.each(vm.checks, function(vmCheck, i){
+
+     //    		if ( check.idCheck === vmCheck.idCheck){
+
+					// // var checkToDelete = checkResource.get( { id: check.idCheck }, function() {
+					// // 	 checkToDelete.$delete(function(data) {
+					// // 		gone forever!
+				 //    //      console.log(data);
+		   //          //      vm.checks.splice(i, 1);
+					// // 	 });
+					// // });
+
+        			// $http.delete(appSettings.serverPath + '/api/CheckDisplayRow/' + check.idCheck )
+        			// 	.then(function(data){
+		         // 			vm.checks.splice(i, 1); //gone forever!
+        			// 	});
+     //    		}
+     //    	});
+
+        	for ( var i = 0; i < vm.checks.length; i++ ){
+
+        		if ( vm.checks[i].idCheck == check.idCheck  ){
+        			$http.delete(appSettings.serverPath + '/api/CheckDisplayRow/' + check.idCheck )
+        				.then(function(data){
+		         			vm.checks.splice(i, 1); //gone forever!
+        				});
+
+        			vm.checks.splice(i, 1); //gone forever!
+        			return;
         		}
-        	});
+        	}
+
         }
-
-
-
-
     }
 
-
-    function CheckDetailsCtrl($modalInstance, checks, check){
+    function CheckDetailsCtrl($modalInstance, checks, check, toastr){
 		var vm = this;
 		vm.checks = checks;
 		vm.check = check;
 		vm.close = close;
-
+		vm.saveCheck = saveCheck;
 
 		function close () {
 			$modalInstance.dismiss('close');
+		};
+
+		function saveCheck (check) {
+	        toastr.success('Saved Check!!!!');
 		};
     }
 

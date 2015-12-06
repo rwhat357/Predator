@@ -6,6 +6,7 @@
     	.factory('checkResource',  checkResource);
 
     function checkResource($resource, appSettings){
+
     	return $resource(appSettings.serverPath + '/api/CheckDisplayRow/:id');
     }
 
