@@ -49,6 +49,13 @@
           controller:'ChecksCtrl as vm',
           title : 'search',
         })
+        .state('editCheck', {
+          url: '^/editCheck',
+          params: { checkToEdit: "" },
+          templateUrl: 'app/search/editCheck.html',
+          controller:'EditCheckCtrl as vm',
+          title : 'editCheck',
+        })
         .state('deleteCheck', {
           url: '^/removeChecks',
           templateUrl: 'app/deleteCheck/deleteCheck.html',
@@ -66,6 +73,18 @@
           templateUrl: 'app/contact/contact.html',
           controller:'ContactCtrl as vm',
           title : 'Contact',
+        })          
+        .state('store', {
+          url: '^/store',
+          templateUrl: 'app/store/store.html',
+          controller:'StoreCtrl as vm',
+          title : 'Store',
+        })          
+        .state('storeGroup', {
+          url: '^/storeGroup',
+          templateUrl: 'app/storeGroup/storeGroup.html',
+          controller:'StoreGroupCtrl as vm',
+          title : 'Store Group',
         })        
         .state('addClerkManager', {
           url: '^/addClerkManager',
