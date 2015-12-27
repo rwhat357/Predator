@@ -1,0 +1,209 @@
+<legend>
+    Edit  Check</legend>
+<p>All fields marked with (*) are required.</p>
+<form class="form-horizontal" name="checkForm" novalidate>
+    <fieldset>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{'has-error':checkForm.inputCheckNum.$invalid &&
+                                                                            checkForm.inputCheckNum.$dirty}">
+                <label class="col-md-3 control-label" for="inputCheckNum">Check Number *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputCheckNum" name="inputCheckNum" type="text" placeholder="eg. 1211434" ng-model="vm.check.checkNum" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputAccountNum.$invalid &&
+                                                                            checkForm.inputAccountNum.$dirty}">
+                <label class="col-md-3 control-label" for="inputAccountNum">Account Number *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputAccountNum" name="inputAccountNum" type="text" placeholder="eg. 342" ng-model="vm.check.accountNum" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputRoutingNum.$invalid &&
+                                                                            checkForm.inputRoutingNum.$dirty}">
+                <label class="col-md-3 control-label" for="inputRoutingNum">Routing Number *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputRoutingNum" name="inputRoutingNum" type="text" placeholder="eg. 33442" ng-model="vm.check.routingNum" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputAmount.$invalid &&
+                                                                            checkForm.inputAmount.$dirty}">
+                <label class="col-md-3 control-label" for="inputAmount"> Amount *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputAmount" name="inputAmount" type="text" placeholder="eg. 500.00" ng-model="vm.check.amount" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputIdStore.$invalid &&
+                                                                            checkForm.inputIdStore.$dirty}">
+                <label class="col-md-3 control-label" for="inputIdStore"> Store ID *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputIdStore" name="inputIdStore" type="text" placeholder="eg. 1" ng-model="vm.check.idStore" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputFName.$invalid &&
+                                                                            checkForm.inputFName.$dirty}">
+                <label class="col-md-3 control-label" for="inputFName"> First Name 1 *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputFName" name="inputFName" type="text" placeholder="eg. Raul" ng-model="vm.check.fName" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputLName.$invalid &&
+                                                                            checkForm.inputLName.$dirty}">
+                <label class="col-md-3 control-label" for="inputLName"> Last Name 1 *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputLName" name="inputLName" placeholder="eg. Whatley" type="text" ng-model="vm.check.lName" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputFName2.$invalid &&
+                                                                            checkForm.inputFName2.$dirty}">
+                <label class="col-md-3 control-label" for="inputFName2"> First Name 2</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputFName2" name="inputFName2" placeholder="eg. Joel" type="text" ng-model="vm.check.fName2"/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputAddress.$invalid &&
+                                                                            checkForm.inputLName2.$dirty}">
+                <label class="col-md-3 control-label" for="inputLName2"> Last Name 2</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputLName2" name="inputLName2" placeholder="eg. Smith" type="text" ng-model="vm.check.lName2"/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputAddress.$invalid &&
+                                                                            checkForm.inputAddress.$dirty}">
+                <label class="col-md-3 control-label" for="inputAddress"> Address *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputAddress" name="inputAddress" placeholder="eg. 1700 Wade Hampton Blvd" type="text" ng-model="vm.check.address" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputCity.$invalid &&
+                                                                            checkForm.inputCity.$dirty}">
+                <label class="col-md-3 control-label" for="inputCity"> City *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputCity" name="inputCity" placeholder="eg. Greenville" type="text" ng-model="vm.check.city" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputState.$invalid &&
+                                                                            checkForm.inputState.$dirty}">
+                <label class="col-md-3 control-label" for="inputState"> State *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputState" name="inputState" placeholder="eg. SC" type="text" ng-model="vm.check.state" required/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{'has-error':checkForm.inputZipcode.$invalid &&
+                                                                            checkForm.inputZipcode.$dirty}">
+                <label class="col-md-3 control-label" for="inputZipcode"> Check Zipcode *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputZipcode" name="inputZipcode" placeholder="eg. 29614" type="text" ng-model="vm.check.zipcode" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputPhoneNumber.$invalid &&
+                                                                            checkForm.inputPhoneNumber.$dirty}">
+                <label class="col-md-3 control-label" for="inputPhoneNumber"> Phone Number *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputPhoneNumber" name="inputPhoneNumber" placeholder="eg. 864-545-4523" type="text" ng-model="vm.check.phoneNum" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputBName.$invalid &&
+                                                                            checkForm.inputBName.$dirty}">
+                <label class="col-md-3 control-label" for="inputBName"> Bank Name *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputBName" name="inputBName" placeholder="eg. PYC Branch #234" type="text" ng-model="vm.check.bName" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputBankAddress.$invalid &&
+                                            checkForm.inputBankAddress.$dirty}">
+                <label class="col-md-3 control-label" for="inputBankAddress"> Bank Address *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputBankAddress" name="inputBankAddress" placeholder="eg. 1700 Wade Hampton Blvd" type="text" ng-model="vm.check.bAddress" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputBankCity.$invalid &&
+                                            checkForm.inputBankCity.$dirty}">
+                <label class="col-md-3 control-label" for="inputBankCity"> Bank City *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputBankCity" name="inputBankCity" placeholder="eg. Greenville" type="text" ng-model="vm.check.bCity" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputBankState.$invalid &&
+                                            checkForm.inputBankState.$dirty}">
+                <label class="col-md-3 control-label" for="inputBankState"> Bank State *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputBankState" name="inputBankState" placeholder="eg. SC" type="text" placeholder="eg: SC" ng-model="vm.check.bState" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputBankZipcode.$invalid &&
+                                            checkForm.inputBankZipcode.$dirty}">
+                <label class="col-md-3 control-label" for="inputBankZipcode"> Bank Zipcode *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputBankZipcode" name="inputBankZipcode" type="text" placeholder="eg: 29614" ng-model="vm.check.bZipcode" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputIdStoreGroup.$invalid &&
+                                            checkForm.inputIdStoreGroup.$dirty}">
+                <label class="col-md-3 control-label" for="inputIdStoreGroup"> Store Group ID *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputIdStoreGroup" name="inputIdStoreGroup" type="text" placeholder="eg: 1" ng-model="vm.check.idStoreGroup" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputSName.$invalid &&
+                                            checkForm.inputSName.$dirty}">
+                <label class="col-md-3 control-label" for="inputSName"> Store Name *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputSName" name="inputSName" type="text" placeholder="eg: Greenville's Walmart #1" ng-model="vm.check.sName" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputSAddress.$invalid &&
+                                            checkForm.inputSAddress.$dirty}">
+                <label class="col-md-3 control-label" for="inputSAddress"> Store Address *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputSAddress" name="inputSAddress" type="text" placeholder="eg: 1700 Wade Hampton Blvd" ng-model="vm.check.sAddress" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputSCity.$invalid &&
+                                            checkForm.inputSCity.$dirty}">
+                <label class="col-md-3 control-label" for="inputSCity"> Store City *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputSCity" name="inputSCity" type="text" placeholder="eg: Greenville" ng-model="vm.check.sCity" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputSState.$invalid &&
+                                            checkForm.inputSState.$dirty}">
+                <label class="col-md-3 control-label" for="inputSState"> Store State *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputSState" name="inputSState" type="text" placeholder="eg: SC" ng-model="vm.check.sState" required/>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':checkForm.inputSZipcode.$invalid &&
+                                            checkForm.inputSZipcode.$dirty}">
+                <label class="col-md-3 control-label" for="inputSZipcode"> Store Zipcode *</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="inputSZipcode" name="inputSZipcode" type="text" placeholder="eg: SC" ng-model="vm.check.sZipcode" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="text-center">
+                    <span>
+                            <button class="btn btn-primary"
+                                    style="width:80px;margin-right:10px"
+                                    ng-click="vm.updateCheck(checkForm.$valid)"
+                                    ng-disabled="checkForm.$invalid">
+                                Save
+                            </button>
+                        </span>
+                    <span>
+                            <button class="btn btn-default"
+                                    style="width:70px"
+                                    ng-click="vm.clearAllFields()">
+                                Clear
+                            </button>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+<!-- {{ vm.check | json}}
+<br>
+{{ vm.checks | json}} -->
